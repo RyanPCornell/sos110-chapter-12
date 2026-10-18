@@ -376,6 +376,47 @@ img.bleed{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
 @media(prefers-reduced-motion:reduce){ .c12q-play .c12q-grow,.c12q-play .c12q-fade,.c12q-ans{animation:none;} }
 @media(max-width:900px){ .c12q-wrap{position:static; padding:1rem 1rem 4rem;} .c12q-grid{grid-template-columns:1fr;} .c12q-viz{min-height:300px;} }
 
+/* ── True or false (tf_slide) ── */
+.slide.c12tf{background:linear-gradient(158deg,#faf7ef,#ede5d3);}
+.tf-wrap{position:absolute; inset:0; display:flex; flex-direction:column; padding:clamp(1rem,2.6vh,2rem) clamp(4.2rem,6vw,5.6rem) clamp(3.2rem,7vh,4rem);}
+.tf-head{display:flex; align-items:flex-end; gap:1rem; margin-bottom:clamp(.5rem,1.4vh,.9rem);}
+.tf-titles{flex:1; min-width:0;} .tf-head .heading{margin-bottom:0;}
+.tf-ctl{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; justify-content:flex-end;}
+.tf-ctl[hidden]{display:none;}
+.tf-cntall{font:italic 600 clamp(.72rem,1vw,.85rem) 'Merriweather',serif; color:#4c4b3f;} .tf-cntall b{font-style:normal; color:#3e6a3e;}
+.c12q-btn:disabled{background:#b9b39c; cursor:default;}
+.tf-list{list-style:none; margin:0; padding:0; flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:clamp(.4rem,1.1vh,.7rem);}
+.tf-row{display:grid; grid-template-columns:2.1rem minmax(0,1fr) clamp(12rem,19vw,16rem); gap:clamp(.7rem,1.3vw,1.1rem); align-items:center;
+  background:#fcf9f1; border:1px solid rgba(43,42,34,.22); border-radius:10px; padding:clamp(.5rem,1.3vh,.8rem) clamp(.8rem,1.3vw,1.1rem);
+  box-shadow:0 8px 20px -16px rgba(52,44,24,.5); transition:border-color .3s, box-shadow .3s;}
+.tf-row.shown{cursor:pointer; border-color:rgba(62,106,62,.45); outline:1px solid rgba(138,106,47,.35); outline-offset:-5px;}
+.tf-row.shown.open{box-shadow:0 12px 26px -14px rgba(52,44,24,.55);}
+.tf-n{display:grid; place-items:center; width:2rem; height:2rem; border-radius:50%; font:900 .9rem 'Merriweather',serif; color:#fcf9f1; background:var(--accent,#5b7536);}
+.tf-st{font:900 clamp(1rem,1.6vw,1.3rem)/1.3 'Merriweather',serif; color:#2b2a22;}
+.tf-exp,.tf-cite{display:none; margin:.3rem 0 0;}
+.tf-row.shown .tf-cite{display:block; font-size:clamp(.56rem,.76vw,.68rem); line-height:1.4; color:#8c8a78;}
+.tf-row.shown.open .tf-exp{display:block; font-size:clamp(.76rem,1.08vw,.92rem); line-height:1.5; color:#3c3b30; animation:c12qIn .45s ease both;}
+.tf-side{display:flex; flex-direction:column; align-items:stretch; gap:.35rem;}
+.tf-btns{display:flex; gap:.4rem;}
+.tf-b{flex:1; font:700 clamp(.82rem,1.15vw,.98rem) 'Merriweather',serif; color:#2b2a22; background:#fffdf8; border:1.5px solid rgba(43,42,34,.3);
+  border-radius:999px; padding:.45rem .5rem; cursor:pointer; transition:background .15s, border-color .15s;}
+.tf-b[hidden]{display:none;}
+.tf-b:hover:not(:disabled){border-color:#3e6a3e; background:#f3f1e8;}
+.tf-b:disabled{cursor:default; opacity:.55;}
+.tf-b.on{opacity:1; background:#3e6a3e; border-color:#3e6a3e; color:#fff;}
+.tf-row.shown .tf-btns{display:none;}
+.tf-res{min-height:1rem;}
+.tf-stamp{display:inline-block; font:900 clamp(1.1rem,1.8vw,1.5rem)/1 'Merriweather',serif; letter-spacing:.18em; text-transform:uppercase; color:#3e6a3e;
+  border:2.5px double #3e6a3e; border-radius:6px; padding:.25rem .55rem .2rem .7rem; transform:rotate(-4deg); animation:tfStamp .5s cubic-bezier(.2,1.4,.4,1) both;}
+@keyframes tfStamp{from{opacity:0; transform:scale(1.6) rotate(-8deg);} to{opacity:1; transform:rotate(-4deg);}}
+.tf-cls{display:flex; align-items:center; gap:.45rem; margin-top:.35rem; font:600 clamp(.62rem,.86vw,.74rem) 'Inter',sans-serif; color:#4c4b3f;}
+.tf-bar{flex:1; height:7px; border-radius:999px; background:#e5dcc6; overflow:hidden;} .tf-bar i{display:block; height:100%; background:#3e6a3e; border-radius:999px; transition:width .8s ease;}
+.tf-you{margin-top:.25rem; font:italic 700 clamp(.62rem,.86vw,.74rem) 'Merriweather',serif;} .tf-you.ok{color:#3e6a3e;} .tf-you.no{color:#9c4f36;}
+.tf-cnt{font:italic 600 clamp(.7rem,.96vw,.82rem) 'Merriweather',serif; color:#8c8a78; text-align:center;}
+.tf-hint{margin:.45rem 0 0; min-height:1.2em; font:italic 600 clamp(.7rem,.98vw,.84rem) 'Merriweather',serif; color:#606152;}
+@media(prefers-reduced-motion:reduce){ .tf-stamp,.tf-row.shown.open .tf-exp{animation:none;} }
+@media(max-width:900px){ .tf-wrap{position:static; padding:1rem 1rem 4rem;} .tf-row{grid-template-columns:2rem 1fr;} .tf-side{grid-column:2;} }
+
 /* ── framed plates (plate_kit.py) ─────────────────────────────────────── */
 .bleed-media.pk-draw{padding:1.1rem 4.4rem 2.2rem 1.4rem;}
 .pk-draw .cp-svg{filter:drop-shadow(0 6px 14px rgba(60,45,20,.14));}
@@ -1069,6 +1110,81 @@ body{background:#1f221b;}
   </div>
   <div class="footer">© 2023 W. W. Norton &amp; Company, Inc.</div>
 </section>
+<section class="slide c12tf" data-type="content" data-tf-id="ch12-food-origins" style="--accent:#5b7536"><div class="tf-wrap"><div class="tf-head"><div class="tf-titles"><div class="eyebrow">12.2 · Live</div><h2 class="heading">Where Did Our Food Come From?</h2><p class="c12q-sub">True or false? Answer each one on your laptop. The instructor reveals them one at a time.</p></div><div class="tf-ctl" data-tfctl hidden><span class="tf-cntall" data-tfall></span><button class="c12q-btn" type="button" data-tfnext>Reveal 1</button><button class="c12q-btn ghost" type="button" data-tfreset>Reset</button></div></div><ol class="tf-list"><li class="tf-row" data-i="0"><span class="tf-n">1</span><div class="tf-body"><div class="tf-st">Wild almonds are poisonous.</div><p class="tf-exp">Wild almond kernels make amygdalin, a bitter compound that releases cyanide. A mutation in a single gene switched it off, and early farmers kept the rare sweet trees.</p><p class="tf-cite">S&aacute;nchez-P&eacute;rez et al. (2019), &#8220;Mutation of a bHLH transcription factor allowed almond domestication,&#8221; <i>Science</i> 364:1095&ndash;1098.</p></div><div class="tf-side"><div class="tf-btns"><button class="tf-b" type="button" data-v="t">True</button><button class="tf-b" type="button" data-v="f">False</button></div><div class="tf-res"></div></div></li><li class="tf-row" data-i="1"><span class="tf-n">2</span><div class="tf-body"><div class="tf-st">Wild bananas are packed with seeds.</div><p class="tf-exp">Bananas went from wild to edible through seed suppression and parthenocarpy: fruit that develops without seeds. Today&#8217;s bananas are sterile, so new plants are grown from shoots of old ones.</p><p class="tf-cite">Perrier et al. (2011), &#8220;Multidisciplinary perspectives on banana (<i>Musa</i> spp.) domestication,&#8221; <i>PNAS</i> 108:11311&ndash;11318; Heslop-Harrison &amp; Schwarzacher (2007), <i>Annals of Botany</i> 100:1073&ndash;1084.</p></div><div class="tf-side"><div class="tf-btns"><button class="tf-b" type="button" data-v="t">True</button><button class="tf-b" type="button" data-v="f">False</button></div><div class="tf-res"></div></div></li><li class="tf-row" data-i="2"><span class="tf-n">3</span><div class="tf-body"><div class="tf-st">There are over 4,000 edible varieties of potato.</div><p class="tf-exp">Most of them grow in the Andes of South America, the potato&#8217;s original home.</p><p class="tf-cite">International Potato Center (CIP), &#8220;Potato: facts and figures,&#8221; cipotato.org/potato.</p></div><div class="tf-side"><div class="tf-btns"><button class="tf-b" type="button" data-v="t">True</button><button class="tf-b" type="button" data-v="f">False</button></div><div class="tf-res"></div></div></li><li class="tf-row" data-i="3"><span class="tf-n">4</span><div class="tf-body"><div class="tf-st">Broccoli, cabbage, kale, cauliflower and Brussels sprouts are all one species.</div><p class="tf-exp">All are <i>Brassica oleracea</i>, bred from one wild Mediterranean plant for different parts: leaves (kale, cabbage), flower buds (broccoli, cauliflower) and side buds (Brussels sprouts).</p><p class="tf-cite">Mabry et al. (2021), &#8220;The evolutionary history of wild, domesticated, and feral <i>Brassica oleracea</i>,&#8221; <i>Molecular Biology and Evolution</i> 38:4419&ndash;4434.</p></div><div class="tf-side"><div class="tf-btns"><button class="tf-b" type="button" data-v="t">True</button><button class="tf-b" type="button" data-v="f">False</button></div><div class="tf-res"></div></div></li><li class="tf-row" data-i="4"><span class="tf-n">5</span><div class="tf-body"><div class="tf-st">Corn’s wild ancestor grew only about a dozen kernels per ear.</div><p class="tf-exp">Teosinte, a wild grass from Mexico, holds roughly ten to twelve kernels, each sealed in a stone-hard case. A change in one gene, <i>tga1</i>, helped expose the naked kernels we eat today.</p><p class="tf-cite">Doebley (2004), &#8220;The genetics of maize evolution,&#8221; <i>Annual Review of Genetics</i> 38:37&ndash;59; Wang et al. (2005), &#8220;The origin of the naked grains of maize,&#8221; <i>Nature</i> 436:714&ndash;719.</p></div><div class="tf-side"><div class="tf-btns"><button class="tf-b" type="button" data-v="t">True</button><button class="tf-b" type="button" data-v="f">False</button></div><div class="tf-res"></div></div></li></ol><p class="tf-hint" data-tfhint></p></div><div class="footer"></div><script>(function(){
+  var SEC=document.currentScript.closest('section'); if(!SEC||SEC.__c12tf) return; SEC.__c12tf=1;
+  if(!window.__deckLiveReady){ window.__deckLiveReady=new Promise(function(r){ window.__deckLiveResolve=r; }); }
+  var ID=SEC.dataset.tfId, KEY='c12tf:'+ID, rows=[].slice.call(SEC.querySelectorAll('.tf-row')), N=rows.length;
+  var ctl=SEC.querySelector('[data-tfctl]'), bNext=SEC.querySelector('[data-tfnext]'), bReset=SEC.querySelector('[data-tfreset]');
+  var allEl=SEC.querySelector('[data-tfall]'), hint=SEC.querySelector('[data-tfhint]');
+  var st={}, counts={}, HOST=false, backend=null, mine={run:0, a:{}}, lastR=-1;
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  try{ var m=JSON.parse(ls(KEY)||'null'); if(m && m.a) mine=m; }catch(e){}
+  function rel(){ return Math.max(0, Math.min(N, +st.released||0)); }
+  function tally(i){
+    if(HOST) return {t:+counts[i+'_t']||0, f:+counts[i+'_f']||0};
+    var f=(st.final||{})[i]||{}; return {t:+f.t||0, f:+f.f||0};
+  }
+  function render(){
+    var R=rel();
+    if(R!==lastR){ rows.forEach(function(row,i){ row.classList.toggle('open', i===R-1); }); lastR=R; }
+    var done=0;
+    rows.forEach(function(row,i){
+      var shown=i<R, a=mine.a[i]; if(a) done++;
+      row.classList.toggle('shown', shown);
+      [].forEach.call(row.querySelectorAll('.tf-b'), function(b){
+        b.hidden=HOST; b.disabled=HOST||!!a||shown||!backend; b.classList.toggle('on', a===b.dataset.v); });
+      var res=row.querySelector('.tf-res'), t=tally(i), n=t.t+t.f, key=[shown,t.t,t.f,a||'',HOST].join('|');
+      if(res.__k===key) return; res.__k=key;
+      if(shown){ var p=n? Math.round(t.t/n*100) : 0;
+        res.innerHTML='<div class="tf-stamp">True</div><div class="tf-cls"><span class="tf-bar"><i style="width:'+p+'%"></i></span>'
+          +'<span>'+(n? p+'% said true' : 'no answers yet')+'</span></div>'
+          +(!HOST && a ? '<div class="tf-you '+(a==='t'?'ok':'no')+'">You said '+(a==='t'?'true':'false')+'</div>' : '');
+      } else res.innerHTML = HOST ? '<div class="tf-cnt">'+n+' answer'+(n===1?'':'s')+'</div>' : '';
+    });
+    if(HOST){
+      ctl.hidden=false; bNext.disabled=R>=N; bNext.textContent = R<N ? 'Reveal '+(R+1)+' of '+N : 'All revealed';
+      var tot=0; for(var i=0;i<N;i++){ var t=tally(i); tot=Math.max(tot, t.t+t.f); } allEl.innerHTML='Students answering: <b>'+tot+'</b>';
+      hint.textContent='';
+    } else {
+      hint.textContent = R>=N ? '' : (done<N ? 'Answered '+done+' of '+N+'. Each answer locks in.' : 'All '+N+' answered. Watch for the reveals.');
+    }
+  }
+  function publish(){
+    if(!HOST || !backend || rel()<1) return;
+    var f={}, old=st.final||{}, ch=false;
+    for(var i=0;i<N;i++){ var t=tally(i); f[i]={t:t.t, f:t.f}; if(!old[i] || +old[i].t!==t.t || +old[i].f!==t.f) ch=true; }
+    if(ch) backend.mergeDoc('polls', ID, {final:f});
+  }
+  function revealNext(){ if(!HOST||!backend) return false; var R=rel(); if(R>=N) return false;
+    var f={}; for(var i=0;i<N;i++){ var t=tally(i); f[i]={t:t.t, f:t.f}; }
+    backend.mergeDoc('polls', ID, {released:R+1, final:f}); return true; }
+  rows.forEach(function(row,i){
+    [].forEach.call(row.querySelectorAll('.tf-b'), function(b){ b.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(HOST||!backend||mine.a[i]||i<rel()) return;
+      mine.a[i]=b.dataset.v; mine.run=st.run||0; ls(KEY, JSON.stringify(mine));
+      backend.bump('polls', ID, i+'_'+b.dataset.v); render();
+    }); });
+    row.addEventListener('click', function(){ if(row.classList.contains('shown')) row.classList.toggle('open'); });
+  });
+  bNext.addEventListener('click', revealNext);
+  bReset.addEventListener('click', function(){
+    if(!backend||!confirm('Clear every answer and hide all the reveals?')) return;
+    backend.setDoc('polls', ID, {counts:{}, released:0, final:{}, run:Date.now()});
+  });
+  SEC.__deckNext=function(){ return HOST ? revealNext() : false; };
+  render();
+  window.__deckLiveReady.then(function(L){
+    backend=L.backend; HOST=!!L.HOST; SEC.classList.toggle('c12-host', HOST);
+    if(HOST) backend.subscribeDoc('polls', ID, function(d){ st=d||{}; counts=st.counts||{}; publish(); render(); });
+    else (backend.subscribeMain||backend.subscribeDoc)('polls', ID, function(d){
+      st=d||{};
+      if(st.run && mine.run!==st.run){ mine={run:st.run, a:{}}; ls(KEY, JSON.stringify(mine)); }
+      render();
+    });
+    render();
+  });
+})();</script></section>
 <section class="slide guess foodsplit" data-type="guess" data-gu-id="ch12-food-co2e" data-gu-unit="kg" data-gu-answers="10,99,24,3,1" style="--accent:#87602f">
   <div class="fs-wrap">
     <div class="fs-poll">
@@ -1482,7 +1598,7 @@ body{background:#1f221b;}
 
 <div class="hud">
   <button onclick="prev()" title="Previous (left arrow)">&#8249;</button>
-  <span class="counter" id="counter">1 / 24</span>
+  <span class="counter" id="counter">1 / 25</span>
   <button onclick="next()" title="Next (right arrow)">&#8250;</button>
   <button onclick="toggleMenu()" title="Slide menu (O)">&#9776;</button>
   <button onclick="toggleFs()" title="Fullscreen (F)">&#9974;</button>
@@ -1491,7 +1607,7 @@ body{background:#1f221b;}
 <div class="menu" id="menu">
   <button class="menu-close" onclick="toggleMenu(false)" aria-label="Close menu">&times;</button>
   <h3>Chapter 12 &middot; Jump to a slide</h3>
-  <div class="menu-grid"><button class="menu-item" data-go="0"><span class="menu-num">1</span>Title</button><button class="menu-item" data-go="1"><span class="menu-num">2</span>Outline</button><button class="menu-item" data-go="2"><span class="menu-num">3</span>Objectives</button><button class="menu-item" data-go="3"><span class="menu-num">4</span>Introduction</button><button class="menu-item" data-go="4"><span class="menu-num">5</span>12.1 ▶ Live: Predators?</button><button class="menu-item" data-go="5"><span class="menu-num">6</span>12.1 Hunter-Gatherers</button><button class="menu-item" data-go="6"><span class="menu-num">7</span>12.1 Green Revolution</button><button class="menu-item" data-go="7"><span class="menu-num">8</span>12.1 ▶ Cereal Index (OWID)</button><button class="menu-item" data-go="8"><span class="menu-num">9</span>12.1 ▶ Fertilizer &amp; Population (OWID)</button><button class="menu-item" data-go="9"><span class="menu-num">10</span>12.1 Transportation</button><button class="menu-item" data-go="10"><span class="menu-num">11</span>12.1 Pesticides &amp; Fertilizers</button><button class="menu-item" data-go="11"><span class="menu-num">12</span>12.2 Loss of Agrodiversity</button><button class="menu-item" data-go="12"><span class="menu-num">13</span>12.4 ▶ Guess the CO₂e</button><button class="menu-item" data-go="13"><span class="menu-num">14</span>12.4 Sustainable Meat?</button><button class="menu-item" data-go="14"><span class="menu-num">15</span>12.5 Food Systems</button><button class="menu-item" data-go="15"><span class="menu-num">16</span>12.5 ▶ Meat vs GDP (OWID)</button><button class="menu-item" data-go="16"><span class="menu-num">17</span>12.5 Food-Water-Energy Nexus</button><button class="menu-item" data-go="17"><span class="menu-num">18</span>12.5 ▶ Game: Guess the Food</button><button class="menu-item" data-go="18"><span class="menu-num">19</span>12.5 Changing Diets</button><button class="menu-item" data-go="19"><span class="menu-num">20</span>12.5 ▶ Food Insecurity (OWID)</button><button class="menu-item" data-go="20"><span class="menu-num">21</span>12.6 Eating Lower on the Food Chain</button><button class="menu-item" data-go="21"><span class="menu-num">22</span>12.6 Organic / Fair Trade / Local</button><button class="menu-item" data-go="22"><span class="menu-num">23</span>12.6 Food Waste</button><button class="menu-item" data-go="23"><span class="menu-num">24</span>Key Concepts</button></div>
+  <div class="menu-grid"><button class="menu-item" data-go="0"><span class="menu-num">1</span>Title</button><button class="menu-item" data-go="1"><span class="menu-num">2</span>Outline</button><button class="menu-item" data-go="2"><span class="menu-num">3</span>Objectives</button><button class="menu-item" data-go="3"><span class="menu-num">4</span>Introduction</button><button class="menu-item" data-go="4"><span class="menu-num">5</span>12.1 ▶ Live: Predators?</button><button class="menu-item" data-go="5"><span class="menu-num">6</span>12.1 Hunter-Gatherers</button><button class="menu-item" data-go="6"><span class="menu-num">7</span>12.1 Green Revolution</button><button class="menu-item" data-go="7"><span class="menu-num">8</span>12.1 ▶ Cereal Index (OWID)</button><button class="menu-item" data-go="8"><span class="menu-num">9</span>12.1 ▶ Fertilizer &amp; Population (OWID)</button><button class="menu-item" data-go="9"><span class="menu-num">10</span>12.1 Transportation</button><button class="menu-item" data-go="10"><span class="menu-num">11</span>12.1 Pesticides &amp; Fertilizers</button><button class="menu-item" data-go="11"><span class="menu-num">12</span>12.2 Loss of Agrodiversity</button><button class="menu-item" data-go="12"><span class="menu-num">13</span>12.2 ▶ Live: True or False?</button><button class="menu-item" data-go="13"><span class="menu-num">14</span>12.4 ▶ Guess the CO₂e</button><button class="menu-item" data-go="14"><span class="menu-num">15</span>12.4 Sustainable Meat?</button><button class="menu-item" data-go="15"><span class="menu-num">16</span>12.5 Food Systems</button><button class="menu-item" data-go="16"><span class="menu-num">17</span>12.5 ▶ Meat vs GDP (OWID)</button><button class="menu-item" data-go="17"><span class="menu-num">18</span>12.5 Food-Water-Energy Nexus</button><button class="menu-item" data-go="18"><span class="menu-num">19</span>12.5 ▶ Game: Guess the Food</button><button class="menu-item" data-go="19"><span class="menu-num">20</span>12.5 Changing Diets</button><button class="menu-item" data-go="20"><span class="menu-num">21</span>12.5 ▶ Food Insecurity (OWID)</button><button class="menu-item" data-go="21"><span class="menu-num">22</span>12.6 Eating Lower on the Food Chain</button><button class="menu-item" data-go="22"><span class="menu-num">23</span>12.6 Organic / Fair Trade / Local</button><button class="menu-item" data-go="23"><span class="menu-num">24</span>12.6 Food Waste</button><button class="menu-item" data-go="24"><span class="menu-num">25</span>Key Concepts</button></div>
 </div>
 
 <script>
