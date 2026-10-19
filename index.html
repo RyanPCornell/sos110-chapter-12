@@ -782,6 +782,8 @@ img.bleed{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
 .c12h-val{font:800 13.5px 'Inter',sans-serif; fill:#2f5233;} .c12h-val.lo{font-weight:600; fill:#8c8a78;} .c12h-val.in{fill:#fff;}
 .c12h-note{flex:none; margin:.2rem 0 0; font-size:clamp(.8rem,1.1vw,.94rem); line-height:1.5; color:#2b2a22;}
 .c12h-note b{color:#2f5233;}
+.c12w .c12h-cap,.c12w .c12h-note b{color:#1f4e6b;} .c12w .c12h-name{fill:#14303f;} .c12w .c12h-name.lo{fill:#5e6b74;}
+.c12w .c12h-val{fill:#1f4e6b;} .c12w .c12h-val.lo{fill:#7d8a93;} .c12w .c12h-val.in{fill:#fff;} .c12w .c12h-val.in.lo{fill:#3f505b;} .c12w .c12h-src{color:#66737c;}
 .c12h-src{flex:none; margin:0; font:italic clamp(.64rem,.85vw,.74rem)/1.45 'Merriweather',serif; color:#76735f;}
 @media(max-width:900px){ .c12c-wrap{position:static; padding:1rem 1rem 4rem;} .c12c-body{grid-template-columns:1fr;} }
 
@@ -929,6 +931,27 @@ body{background:#1f221b;}
 .foodsplit .fsd-stats{font:600 .74rem 'Inter',sans-serif; color:#606152; white-space:nowrap;}
 .foodsplit .fsd-svg{flex:1; min-height:0; width:100%; height:100%; display:block; overflow:visible;}
 .foodsplit .fsd-card .gu-bins{display:none!important;}
+
+/* the water-footprint twin of slide 15 (variant fs-water): the same layout in blues */
+.slide.foodsplit.fs-water{--accent:#2f6f98!important; --forest:#1f4e6b; background:linear-gradient(158deg,#f5f9fb,#e1ecf2)!important;}
+.fs-water .eyebrow,.fs-water .fs-embed-eyebrow{color:#2f6f98!important;}
+.fs-water .heading,.fs-water .fs-embed-title{color:#14303f;}
+.fs-water .gu-sub,.fs-water .gu-stats,.fs-water .fsd-stats{color:#55646e;}
+.fs-water .gu-row,.fs-water .gu-strip,.fs-water .fsd-card,.fs-water .fs-embed-wrap{background:#fbfdfe; border-color:rgba(31,78,107,.22);}
+.fs-water .fs-embed-wrap{outline-color:rgba(47,111,152,.38);}
+.fs-water .gu-strip,.fs-water .fsd-card{border-left-color:#2f6f98;}
+.fs-water .gu-cat,.fs-water .gu-card-head{color:#14303f;}
+.fs-water .gu-num{color:#1f4e6b;}
+.fs-water .gu-range{accent-color:#2f6f98;}
+.fs-water .gu-submit,.fs-water .gu-revealbtn{background:#2f6f98;}
+.fs-water .gu-submit:hover:not(:disabled){background:#265d80;}
+.fs-water .gu-revealbtn.on{background:#6c8494;}
+.fs-water .gu-dot{background:#3f7ea6;}
+.fs-water .gu-track-line{background:#c3d3de;}
+.fs-water .gu-mean-lbl{background:#1f4e6b;}
+.fs-water .fs-veil{background:repeating-linear-gradient(-45deg,#eef4f8,#eef4f8 12px,#e3edf3 12px,#e3edf3 24px); color:#55646e;}
+.fs-water .fs-veil-txt{color:#14303f;}
+.fs-water .c12c-ghg{background:#fbfdfe;}
 
 /* announcements */
 .deck .slide[data-type="announce"]{background:linear-gradient(158deg,#faf7ef,#ede5d3);}
@@ -1467,7 +1490,7 @@ body{background:#1f221b;}
     render();
   });
 })();</script></section>
-<section class="slide guess foodsplit" data-type="guess" data-gu-id="ch12-food-co2e" data-gu-unit="kg" data-gu-answers="9.9,99,24,3.1,0.5" style="--accent:#87602f">
+<section class="slide guess foodsplit" data-type="guess" data-gu-id="ch12-food-co2e" data-gu-unit="kg" data-gu-max="100" data-gu-answers="9.9,99,24,3.1,0.5" style="--accent:#87602f">
   <div class="fs-wrap">
     <div class="fs-poll">
       <div class="gu-root">
@@ -1491,7 +1514,7 @@ body{background:#1f221b;}
           </div>
           <div class="gu-strips" data-gu-strips><div class="gu-strip"><div class="gu-card-head">Chicken<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="0"></span><span class="gu-stats" data-gu-stats="0"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="0"></div><div class="gu-answer" data-gu-ans="0" style="left:9.9%" hidden><span class="gu-answer-lbl">actual&nbsp;9.9&nbsp;kg</span></div><div class="gu-mean" data-gu-mean="0" hidden><span class="gu-mean-lbl" data-gu-meanlbl="0"></span></div><div class="gu-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Beef<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="1"></span><span class="gu-stats" data-gu-stats="1"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="1"></div><div class="gu-answer" data-gu-ans="1" style="left:99%" hidden><span class="gu-answer-lbl">actual&nbsp;99&nbsp;kg</span></div><div class="gu-mean" data-gu-mean="1" hidden><span class="gu-mean-lbl" data-gu-meanlbl="1"></span></div><div class="gu-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Cheese<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="2"></span><span class="gu-stats" data-gu-stats="2"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="2"></div><div class="gu-answer" data-gu-ans="2" style="left:24%" hidden><span class="gu-answer-lbl">actual&nbsp;24&nbsp;kg</span></div><div class="gu-mean" data-gu-mean="2" hidden><span class="gu-mean-lbl" data-gu-meanlbl="2"></span></div><div class="gu-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Milk<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="3"></span><span class="gu-stats" data-gu-stats="3"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="3"></div><div class="gu-answer" data-gu-ans="3" style="left:3.1%" hidden><span class="gu-answer-lbl">actual&nbsp;3.1&nbsp;kg</span></div><div class="gu-mean" data-gu-mean="3" hidden><span class="gu-mean-lbl" data-gu-meanlbl="3"></span></div><div class="gu-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Potatoes<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="4"></span><span class="gu-stats" data-gu-stats="4"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="4"></div><div class="gu-answer" data-gu-ans="4" style="left:0.5%" hidden><span class="gu-answer-lbl">actual&nbsp;0.5&nbsp;kg</span></div><div class="gu-mean" data-gu-mean="4" hidden><span class="gu-mean-lbl" data-gu-meanlbl="4"></span></div><div class="gu-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div></div></div></div>
           <div class="gu-grid fsd-grid" data-gu-grid hidden><div class="fsd-card"><div class="gu-card-head">Chicken<span class="fsd-stats" data-fsd-stats="0"></span></div><svg class="fsd-svg" data-fsd="0" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Chicken"></svg><div class="gu-bins" data-gu-bins="0" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Beef<span class="fsd-stats" data-fsd-stats="1"></span></div><svg class="fsd-svg" data-fsd="1" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Beef"></svg><div class="gu-bins" data-gu-bins="1" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Cheese<span class="fsd-stats" data-fsd-stats="2"></span></div><svg class="fsd-svg" data-fsd="2" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Cheese"></svg><div class="gu-bins" data-gu-bins="2" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Milk<span class="fsd-stats" data-fsd-stats="3"></span></div><svg class="fsd-svg" data-fsd="3" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Milk"></svg><div class="gu-bins" data-gu-bins="3" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Potatoes<span class="fsd-stats" data-fsd-stats="4"></span></div><svg class="fsd-svg" data-fsd="4" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Potatoes"></svg><div class="gu-bins" data-gu-bins="4" hidden></div></div></div>
-          <script type="application/json" data-fsd-cfg>{"cats": ["Chicken", "Beef", "Cheese", "Milk", "Potatoes"], "answers": [9.9, 99, 24, 3.1, 0.5], "unit": "kg"}</script>
+          <script type="application/json" data-fsd-cfg>{"cats": ["Chicken", "Beef", "Cheese", "Milk", "Potatoes"], "answers": [9.9, 99, 24, 3.1, 0.5], "unit": "kg", "max": 100, "ticks": [0, 25, 50, 75, 100]}</script>
         </div>
         <div class="gu-foot">
           <span class="gu-total"><strong data-gu-total>0</strong> students have answered</span>
@@ -1539,9 +1562,10 @@ body{background:#1f221b;}
      average as a dashed line, and the true value as a solid line once the host reveals the answers. */
   var sec=document.currentScript.closest('.foodsplit'); if(!sec||sec.__fsd) return; sec.__fsd=1;
   var C=JSON.parse(sec.querySelector('[data-fsd-cfg]').textContent), id=sec.dataset.guId, btn=sec.querySelector('[data-gu-revealbtn]');
-  var L=22, R=538, base=64, maxH=40, VW=560, VH=96, INK='#2b2a22', DEEP='#2f5233', WARM='#87602f', last={};
-  function X(v){ return L+(R-L)*Math.max(0,Math.min(100,v))/100; }
-  function fm(v){ return v<10 ? String(Math.round(v*10)/10) : String(Math.round(v)); }
+  var MAX=C.max||100, TK=C.ticks||[0,25,50,75,100], P=C.pal||{lo:'#b9cf8f', mid:'#6f9a52', deep:'#2f5233'};
+  var L=22, R=538, base=64, maxH=40, VW=560, VH=96, INK='#2b2a22', DEEP=P.deep, WARM='#87602f', last={};
+  function X(v){ return L+(R-L)*Math.max(0,Math.min(MAX,v))/MAX; }
+  function fm(v){ return v<10 ? String(Math.round(v*10)/10) : Math.round(v).toLocaleString('en-US'); }
   function T(x,y,t,o){ o=o||{}; return '<text x="'+x+'" y="'+y+'" text-anchor="'+(o.a||'middle')+'" font-family="'+(o.serif?'Merriweather,Georgia,serif':'Inter,system-ui,sans-serif')+'" font-weight="'+(o.w||700)+'" font-size="'+(o.s||11)+'"'+(o.it?' font-style="italic"':'')+' fill="'+(o.c||INK)+'">'+t+'</text>'; }
   function pill(x,y,w,txt,col){ x=Math.max(L+w/2-6, Math.min(R-w/2+6, x)); return '<rect x="'+(x-w/2).toFixed(1)+'" y="'+y+'" width="'+w+'" height="18" rx="9" fill="'+col+'"/>'+T(x.toFixed(1),y+13,txt,{w:800,s:11.5,c:'#fffdf8'}); }
   function draw(counts){
@@ -1551,25 +1575,24 @@ body{background:#1f221b;}
       /* draw at the strip's real pixel size so the labels stay legible however short the strip is */
       var bx=svg.getBoundingClientRect(); VW=Math.max(320, Math.round(bx.width)||560); VH=Math.max(64, Math.round(bx.height)||96);
       svg.setAttribute('viewBox','0 0 '+VW+' '+VH); L=24; R=VW-30; base=VH-19; maxH=Math.max(18, base-24);
-      var by=[], n=0, sum=0, v, k;
-      for(v=0;v<=100;v++) by.push(0);
-      Object.keys(last).forEach(function(key){ var m=key.match(/^(\d+)_(\d+)$/); if(!m||+m[1]!==c) return; var x=+m[2], q=+last[key]||0; if(x>100||q<=0) return; by[x]+=q; n+=q; sum+=x*q; });
-      var gid='fsdG'+c, s='<defs><linearGradient id="'+gid+'" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#b9cf8f"/><stop offset=".45" stop-color="#6f9a52"/><stop offset="1" stop-color="#2f5233"/></linearGradient>'
-        +'<pattern id="fsdH'+c+'" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><path d="M0 0 V6" stroke="#fff" stroke-width=".8" opacity=".25"/></pattern>'
-        +'<filter id="fsdN'+c+'" filterUnits="userSpaceOnUse" x="-20" y="-20" width="'+(VW+40)+'" height="'+(VH+40)+'"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.4"/></filter></defs>';
+      var vals=[], n=0, sum=0, v;
+      Object.keys(last).forEach(function(key){ var m=key.match(/^(\d+)_(\d+)$/); if(!m||+m[1]!==c) return; var x=+m[2], q=+last[key]||0; if(x>MAX||q<=0) return; vals.push([x,q]); n+=q; sum+=x*q; });
+      var pre='fsd'+String(id).replace(/[^a-z0-9]/gi,'')+c, gid=pre+'G', s='<defs><linearGradient id="'+gid+'" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="'+P.lo+'"/><stop offset=".45" stop-color="'+P.mid+'"/><stop offset="1" stop-color="'+P.deep+'"/></linearGradient>'
+        +'<pattern id="'+pre+'H" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><path d="M0 0 V6" stroke="#fff" stroke-width=".8" opacity=".25"/></pattern>'
+        +'<filter id="'+pre+'N" filterUnits="userSpaceOnUse" x="-20" y="-20" width="'+(VW+40)+'" height="'+(VH+40)+'"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.4"/></filter></defs>';
       if(n){
-        var pts=[], mx=0, sig=2.6;
-        for(var u=0;u<=100;u+=.5){ var y=0; for(v=0;v<=100;v++) if(by[v]) y+=by[v]*Math.exp(-Math.pow(u-v,2)/(2*sig*sig)); pts.push([u,y]); if(y>mx) mx=y; }
+        var pts=[], mx=0, sig=MAX*.026;   /* the same smoothing, relative to the axis, on any scale */
+        for(var u=0;u<=MAX;u+=MAX/200){ var y=0; vals.forEach(function(e){ y+=e[1]*Math.exp(-Math.pow(u-e[0],2)/(2*sig*sig)); }); pts.push([u,y]); if(y>mx) mx=y; }
         var d='M'+L+','+base; pts.forEach(function(p){ d+=' L'+X(p[0]).toFixed(1)+','+(base-p[1]/mx*maxH).toFixed(1); }); d+=' L'+R+','+base+' Z';
-        s+='<path d="'+d+'" fill="url(#'+gid+')"/><path d="'+d+'" fill="url(#fsdH'+c+')"/><path d="'+d+'" fill="none" stroke="'+INK+'" stroke-width="1.4" filter="url(#fsdN'+c+')"/>';
+        s+='<path d="'+d+'" fill="url(#'+gid+')"/><path d="'+d+'" fill="url(#'+pre+'H)"/><path d="'+d+'" fill="none" stroke="'+INK+'" stroke-width="1.4" filter="url(#'+pre+'N)"/>';
       } else s+=T(VW/2,base-14,'No guesses yet',{serif:1,it:1,w:400,s:12,c:'#8c8a78'});
-      s+='<path d="M'+(L-8)+','+base+' H'+(R+8)+'" stroke="'+INK+'" stroke-width="1.5" filter="url(#fsdN'+c+')"/>';
-      [0,25,50,75,100].forEach(function(t){ s+='<path d="M'+X(t)+','+base+' v5" stroke="'+INK+'" stroke-width="1.1"/>'+T(X(t),base+16,t+(t===100?' '+C.unit:''),{w:600,s:11.5,c:'#76735f'}); });
+      s+='<path d="M'+(L-8)+','+base+' H'+(R+8)+'" stroke="'+INK+'" stroke-width="1.5" filter="url(#'+pre+'N)"/>';
+      TK.forEach(function(t,i){ s+='<path d="M'+X(t)+','+base+' v5" stroke="'+INK+'" stroke-width="1.1"/>'+T(X(t),base+16,fm(t)+(i===TK.length-1?' '+C.unit:''),{w:600,s:11.5,c:'#76735f'}); });
       var mean=n? sum/n : null, xm=n? X(mean) : null;
-      if(n) s+='<path d="M'+xm.toFixed(1)+','+(base-maxH-4)+' V'+base+'" stroke="'+DEEP+'" stroke-width="1.6" stroke-dasharray="4 3"/>'+pill(xm,1,128,'class average '+fm(mean),DEEP);
+      if(n) s+='<path d="M'+xm.toFixed(1)+','+(base-maxH-4)+' V'+base+'" stroke="'+DEEP+'" stroke-width="1.6" stroke-dasharray="4 3"/>'+pill(xm,1,MAX>=1000?150:128,'class average '+fm(mean),DEEP);
       if(on && C.answers[c]!==undefined){
-        var a=C.answers[c], xa=X(a), clash=n && Math.abs(xa-xm)<120, ya=clash? 21 : 1;
-        s+='<path d="M'+xa.toFixed(1)+','+(ya+16)+' V'+base+'" stroke="'+WARM+'" stroke-width="2.2"/>'+pill(xa,ya,108,'actual '+fm(a)+' '+C.unit,WARM);
+        var a=C.answers[c], xa=X(a), clash=n && Math.abs(xa-xm)<(MAX>=1000?140:120), ya=clash? 21 : 1;
+        s+='<path d="M'+xa.toFixed(1)+','+(ya+16)+' V'+base+'" stroke="'+WARM+'" stroke-width="2.2"/>'+pill(xa,ya,MAX>=1000?130:108,'actual '+fm(a)+' '+C.unit,WARM);
       }
       svg.innerHTML=s;
       if(stats) stats.textContent = n ? 'n = '+n+'  ·  average '+fm(mean)+' '+C.unit : '';
@@ -1579,6 +1602,136 @@ body{background:#1f221b;}
   if(window.ResizeObserver){ var rq=0, ro=new ResizeObserver(function(){ cancelAnimationFrame(rq); rq=requestAnimationFrame(function(){ draw(last); }); });
     sec.querySelectorAll('[data-fsd]').forEach(function(e){ ro.observe(e); }); }
   draw({});
+  /* big ranges (liters): show the student's slider value with a thousands separator */
+  if(MAX>=1000) sec.querySelectorAll('.gu-num').forEach(function(el){
+    function f(){ var t=el.textContent.replace(/,/g,''); if(/^\d+$/.test(t)){ var g=(+t).toLocaleString('en-US'); if(g!==el.textContent) el.textContent=g; } }
+    new MutationObserver(f).observe(el,{childList:true, characterData:true, subtree:true}); f(); });
+  if(!window.__deckLiveReady){ window.__deckLiveReady=new Promise(function(r){ window.__deckLiveResolve=r; }); }
+  window.__deckLiveReady.then(function(Lv){
+    if(!Lv || !Lv.HOST || !Lv.backend) return;
+    /* open on the distribution unless this host already chose a view */
+    var sel=sec.querySelector('[data-gu-view]'), pref=null; try{ pref=localStorage.getItem('gu-view:'+id); }catch(e){}
+    if(sel && !pref){ sel.value='expanded'; sel.dispatchEvent(new Event('change')); }
+    Lv.backend.subscribe('polls', id, draw);
+  });
+})();</script>
+</section>
+<section class="slide guess foodsplit fs-water" data-type="guess" data-gu-id="ch12-food-water" data-gu-unit="L" data-gu-max="20000" data-gu-answers="4325,15415,5060,1021,287" style="--accent:#87602f">
+  <div class="fs-wrap">
+    <div class="fs-poll">
+      <div class="gu-root">
+        <div class="gu-head">
+          <div class="eyebrow">12.4  ·  Water Footprint</div>
+          <h2 class="heading">How many liters of water per kg of food?</h2>
+          <div class="gu-sub">Slide your estimate (0–20,000 liters) for each food and lock in. The class answers appear on the instructor's screen.</div>
+        </div>
+        <div class="gu-student" data-gu-student>
+          <div class="gu-rows"><div class="gu-row"><div class="gu-cat">Chicken</div><input class="gu-range" type="range" data-cat="0" min="0" max="20000" value="10000" step="100"><div class="gu-out"><span class="gu-num" data-gu-num="0">10000</span><span class="gu-unit">L</span></div></div><div class="gu-row"><div class="gu-cat">Beef</div><input class="gu-range" type="range" data-cat="1" min="0" max="20000" value="10000" step="100"><div class="gu-out"><span class="gu-num" data-gu-num="1">10000</span><span class="gu-unit">L</span></div></div><div class="gu-row"><div class="gu-cat">Cheese</div><input class="gu-range" type="range" data-cat="2" min="0" max="20000" value="10000" step="100"><div class="gu-out"><span class="gu-num" data-gu-num="2">10000</span><span class="gu-unit">L</span></div></div><div class="gu-row"><div class="gu-cat">Milk</div><input class="gu-range" type="range" data-cat="3" min="0" max="20000" value="10000" step="100"><div class="gu-out"><span class="gu-num" data-gu-num="3">10000</span><span class="gu-unit">L</span></div></div><div class="gu-row"><div class="gu-cat">Potatoes</div><input class="gu-range" type="range" data-cat="4" min="0" max="20000" value="10000" step="100"><div class="gu-out"><span class="gu-num" data-gu-num="4">10000</span><span class="gu-unit">L</span></div></div></div>
+          <button class="gu-submit" type="button" data-gu-submit>Lock in my answers</button>
+        </div>
+        <div class="gu-host" data-gu-host hidden>
+          <div class="gu-toolbar">
+            <button class="gu-revealbtn" type="button" data-gu-revealbtn hidden>Reveal answers</button>
+            <label class="gu-viewlbl" for="gu-view-ch12-food-water">View</label>
+            <select class="gu-view" id="gu-view-ch12-food-water" data-gu-view>
+              <option value="standard">Standard: dot plot</option>
+              <option value="expanded">Distribution</option>
+            </select>
+          </div>
+          <div class="gu-strips" data-gu-strips><div class="gu-strip"><div class="gu-card-head">Chicken<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="0"></span><span class="gu-stats" data-gu-stats="0"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="0"></div><div class="gu-answer" data-gu-ans="0" style="left:21.625%" hidden><span class="gu-answer-lbl">actual&nbsp;4,325&nbsp;L</span></div><div class="gu-mean" data-gu-mean="0" hidden><span class="gu-mean-lbl" data-gu-meanlbl="0"></span></div><div class="gu-ticks"><span>0</span><span>5,000</span><span>10,000</span><span>15,000</span><span>20,000</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Beef<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="1"></span><span class="gu-stats" data-gu-stats="1"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="1"></div><div class="gu-answer" data-gu-ans="1" style="left:77.075%" hidden><span class="gu-answer-lbl">actual&nbsp;15,415&nbsp;L</span></div><div class="gu-mean" data-gu-mean="1" hidden><span class="gu-mean-lbl" data-gu-meanlbl="1"></span></div><div class="gu-ticks"><span>0</span><span>5,000</span><span>10,000</span><span>15,000</span><span>20,000</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Cheese<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="2"></span><span class="gu-stats" data-gu-stats="2"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="2"></div><div class="gu-answer" data-gu-ans="2" style="left:25.3%" hidden><span class="gu-answer-lbl">actual&nbsp;5,060&nbsp;L</span></div><div class="gu-mean" data-gu-mean="2" hidden><span class="gu-mean-lbl" data-gu-meanlbl="2"></span></div><div class="gu-ticks"><span>0</span><span>5,000</span><span>10,000</span><span>15,000</span><span>20,000</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Milk<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="3"></span><span class="gu-stats" data-gu-stats="3"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="3"></div><div class="gu-answer" data-gu-ans="3" style="left:5.105%" hidden><span class="gu-answer-lbl">actual&nbsp;1,021&nbsp;L</span></div><div class="gu-mean" data-gu-mean="3" hidden><span class="gu-mean-lbl" data-gu-meanlbl="3"></span></div><div class="gu-ticks"><span>0</span><span>5,000</span><span>10,000</span><span>15,000</span><span>20,000</span></div></div></div><div class="gu-strip"><div class="gu-card-head">Potatoes<span class="gu-stats-wrap"><span class="gu-scale" data-gu-scale="4"></span><span class="gu-stats" data-gu-stats="4"></span></span></div><div class="gu-track"><div class="gu-track-line"></div><div class="gu-dots" data-gu-dots="4"></div><div class="gu-answer" data-gu-ans="4" style="left:1.435%" hidden><span class="gu-answer-lbl">actual&nbsp;287&nbsp;L</span></div><div class="gu-mean" data-gu-mean="4" hidden><span class="gu-mean-lbl" data-gu-meanlbl="4"></span></div><div class="gu-ticks"><span>0</span><span>5,000</span><span>10,000</span><span>15,000</span><span>20,000</span></div></div></div></div>
+          <div class="gu-grid fsd-grid" data-gu-grid hidden><div class="fsd-card"><div class="gu-card-head">Chicken<span class="fsd-stats" data-fsd-stats="0"></span></div><svg class="fsd-svg" data-fsd="0" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Chicken"></svg><div class="gu-bins" data-gu-bins="0" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Beef<span class="fsd-stats" data-fsd-stats="1"></span></div><svg class="fsd-svg" data-fsd="1" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Beef"></svg><div class="gu-bins" data-gu-bins="1" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Cheese<span class="fsd-stats" data-fsd-stats="2"></span></div><svg class="fsd-svg" data-fsd="2" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Cheese"></svg><div class="gu-bins" data-gu-bins="2" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Milk<span class="fsd-stats" data-fsd-stats="3"></span></div><svg class="fsd-svg" data-fsd="3" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Milk"></svg><div class="gu-bins" data-gu-bins="3" hidden></div></div><div class="fsd-card"><div class="gu-card-head">Potatoes<span class="fsd-stats" data-fsd-stats="4"></span></div><svg class="fsd-svg" data-fsd="4" viewBox="0 0 560 96" role="img" aria-label="Class distribution of guesses for Potatoes"></svg><div class="gu-bins" data-gu-bins="4" hidden></div></div></div>
+          <script type="application/json" data-fsd-cfg>{"cats": ["Chicken", "Beef", "Cheese", "Milk", "Potatoes"], "answers": [4325, 15415, 5060, 1021, 287], "unit": "L", "max": 20000, "ticks": [0, 5000, 10000, 15000, 20000], "pal": {"lo": "#b8d4e6", "mid": "#4f8db8", "deep": "#1f4e6b"}}</script>
+        </div>
+        <div class="gu-foot">
+          <span class="gu-total"><strong data-gu-total>0</strong> students have answered</span>
+          <span class="gu-hint" data-gu-hint></span>
+          <button class="gu-reset" type="button" data-gu-reset hidden>Reset answers</button>
+        </div>
+      </div>
+    </div>
+    <div class="fs-chart">
+      <div class="fs-embed-head">
+        <div class="fs-embed-eyebrow">The answer</div>
+        <h2 class="fs-embed-title">Water Footprint per Kilogram of Food</h2>
+      </div>
+      <div class="fs-embed-wrap">
+        <div class="c12c-ghg c12w fs-embed-frame"><div class="c12h-cap">Liters of water per kilogram of food (global average)</div><svg class="c12h-svg" viewBox="0 0 540 533" role="img" aria-label="Bar chart of the water footprint per kilogram of 17 foods"><defs><filter id="c12wW" x="-2%" y="-20%" width="104%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="9"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></defs><text class="c12h-name lo" x="166" y="23" text-anchor="end">Almonds (shelled)</text><rect x="176" y="7" width="300.0" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val in lo" x="467.0" y="23" text-anchor="end">16,095</text><text class="c12h-name" x="166" y="54" text-anchor="end">Beef</text><rect x="176" y="38" width="287.3" height="22" rx="3" fill="#2f6f98" filter="url(#c12wW)"/><text class="c12h-val in" x="454.3" y="54" text-anchor="end">15,415</text><text class="c12h-name lo" x="166" y="85" text-anchor="end">Lamb &amp; Mutton</text><rect x="176" y="69" width="194.1" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="377.1" y="85">10,411</text><text class="c12h-name lo" x="166" y="116" text-anchor="end">Pork</text><rect x="176" y="100" width="111.6" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="294.6" y="116">5,988</text><text class="c12h-name lo" x="166" y="147" text-anchor="end">Lentils</text><rect x="176" y="131" width="109.5" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="292.5" y="147">5,874</text><text class="c12h-name" x="166" y="178" text-anchor="end">Cheese</text><rect x="176" y="162" width="94.3" height="22" rx="3" fill="#2f6f98" filter="url(#c12wW)"/><text class="c12h-val" x="277.3" y="178">5,060</text><text class="c12h-name" x="166" y="209" text-anchor="end">Chicken</text><rect x="176" y="193" width="80.6" height="22" rx="3" fill="#2f6f98" filter="url(#c12wW)"/><text class="c12h-val" x="263.6" y="209">4,325</text><text class="c12h-name lo" x="166" y="240" text-anchor="end">Chickpeas</text><rect x="176" y="224" width="77.9" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="260.9" y="240">4,177</text><text class="c12h-name lo" x="166" y="271" text-anchor="end">Eggs</text><rect x="176" y="255" width="60.9" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="243.9" y="271">3,265</text><text class="c12h-name lo" x="166" y="302" text-anchor="end">Soybeans</text><rect x="176" y="286" width="40.0" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="223.0" y="302">2,145</text><text class="c12h-name lo" x="166" y="333" text-anchor="end">Peas (dry)</text><rect x="176" y="317" width="36.9" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="219.9" y="333">1,979</text><text class="c12h-name lo" x="166" y="364" text-anchor="end">Wheat</text><rect x="176" y="348" width="34.1" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="217.1" y="364">1,827</text><text class="c12h-name lo" x="166" y="395" text-anchor="end">Maize</text><rect x="176" y="379" width="22.8" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="205.8" y="395">1,222</text><text class="c12h-name" x="166" y="426" text-anchor="end">Milk</text><rect x="176" y="410" width="19.0" height="22" rx="3" fill="#2f6f98" filter="url(#c12wW)"/><text class="c12h-val" x="202.0" y="426">1,021</text><text class="c12h-name lo" x="166" y="457" text-anchor="end">Bananas</text><rect x="176" y="441" width="14.7" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="197.7" y="457">790</text><text class="c12h-name" x="166" y="488" text-anchor="end">Potatoes</text><rect x="176" y="472" width="5.3" height="22" rx="3" fill="#2f6f98" filter="url(#c12wW)"/><text class="c12h-val" x="188.3" y="488">287</text><text class="c12h-name lo" x="166" y="519" text-anchor="end">Tomatoes</text><rect x="176" y="503" width="4.0" height="22" rx="3" fill="#c3d3de" filter="url(#c12wW)"/><text class="c12h-val lo" x="187.0" y="519">214</text></svg><p class="c12h-note">A kilogram of <b>beef</b> takes about <b>15,400 liters</b> (roughly 4,070 gallons), more than <b>50 times</b> as much as potatoes. Per kilogram, <b>chicken</b> and <b>cheese</b> need a quarter to a third of beef&rsquo;s water.</p><p class="c12h-src">Water footprint = rain used by plants and feed (green) + irrigation and drinking water (blue) + water needed to dilute pollution (grey). Blue bars: the five foods you estimated. Data: Mekonnen &amp; Hoekstra (2010), UNESCO-IHE Value of Water Research Reports 47 and 48 (published in <i>HESS</i>, 2011, and <i>Ecosystems</i>, 2012).</p></div>
+        <div class="fs-veil" aria-hidden="true">
+          <div class="fs-veil-icon">🔒</div>
+          <div class="fs-veil-txt">Graph hidden</div>
+          <div class="fs-veil-sub">The instructor will reveal the answer once everyone has locked in.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">© 2023 W. W. Norton &amp; Company, Inc.</div>
+  <script>(function(){
+    var sec=document.currentScript.closest('.foodsplit');
+    if(!sec||sec.dataset.gveilWired)return; sec.dataset.gveilWired='1';
+    var btn=sec.querySelector('[data-gu-revealbtn]');
+    if(!btn)return;
+    // Mirror the engine's "Reveal answers" button: when the host reveals the true
+    // answers, also unveil the graph (and relabel the button to say so).
+    function sync(){
+      var on=btn.classList.contains('on');
+      sec.classList.toggle('graph-shown', on);
+      btn.textContent = on ? 'Hide answers & graph' : 'Reveal answers & graph';
+    }
+    new MutationObserver(sync).observe(btn,{attributes:true, attributeFilter:['class']});
+    sync();
+    // the presenter clicker reveals the answers and the graph (next press moves on)
+    sec.__deckNext=function(){ if(!sec.classList.contains('host') || btn.hidden || btn.classList.contains('on')) return false; btn.click(); return true; };
+  })();</script>
+  <script>(function(){
+  /* Host "Distribution" view for food_split_slide: one smooth class distribution per food, drawn like Ch11's
+     agree/disagree spectrum (slide 11): a green density curve with a hatch and an inked outline, the class
+     average as a dashed line, and the true value as a solid line once the host reveals the answers. */
+  var sec=document.currentScript.closest('.foodsplit'); if(!sec||sec.__fsd) return; sec.__fsd=1;
+  var C=JSON.parse(sec.querySelector('[data-fsd-cfg]').textContent), id=sec.dataset.guId, btn=sec.querySelector('[data-gu-revealbtn]');
+  var MAX=C.max||100, TK=C.ticks||[0,25,50,75,100], P=C.pal||{lo:'#b9cf8f', mid:'#6f9a52', deep:'#2f5233'};
+  var L=22, R=538, base=64, maxH=40, VW=560, VH=96, INK='#2b2a22', DEEP=P.deep, WARM='#87602f', last={};
+  function X(v){ return L+(R-L)*Math.max(0,Math.min(MAX,v))/MAX; }
+  function fm(v){ return v<10 ? String(Math.round(v*10)/10) : Math.round(v).toLocaleString('en-US'); }
+  function T(x,y,t,o){ o=o||{}; return '<text x="'+x+'" y="'+y+'" text-anchor="'+(o.a||'middle')+'" font-family="'+(o.serif?'Merriweather,Georgia,serif':'Inter,system-ui,sans-serif')+'" font-weight="'+(o.w||700)+'" font-size="'+(o.s||11)+'"'+(o.it?' font-style="italic"':'')+' fill="'+(o.c||INK)+'">'+t+'</text>'; }
+  function pill(x,y,w,txt,col){ x=Math.max(L+w/2-6, Math.min(R-w/2+6, x)); return '<rect x="'+(x-w/2).toFixed(1)+'" y="'+y+'" width="'+w+'" height="18" rx="9" fill="'+col+'"/>'+T(x.toFixed(1),y+13,txt,{w:800,s:11.5,c:'#fffdf8'}); }
+  function draw(counts){
+    last=counts||{}; var on=!!(btn&&btn.classList.contains('on'));
+    C.cats.forEach(function(name,c){
+      var svg=sec.querySelector('[data-fsd="'+c+'"]'), stats=sec.querySelector('[data-fsd-stats="'+c+'"]'); if(!svg) return;
+      /* draw at the strip's real pixel size so the labels stay legible however short the strip is */
+      var bx=svg.getBoundingClientRect(); VW=Math.max(320, Math.round(bx.width)||560); VH=Math.max(64, Math.round(bx.height)||96);
+      svg.setAttribute('viewBox','0 0 '+VW+' '+VH); L=24; R=VW-30; base=VH-19; maxH=Math.max(18, base-24);
+      var vals=[], n=0, sum=0, v;
+      Object.keys(last).forEach(function(key){ var m=key.match(/^(\d+)_(\d+)$/); if(!m||+m[1]!==c) return; var x=+m[2], q=+last[key]||0; if(x>MAX||q<=0) return; vals.push([x,q]); n+=q; sum+=x*q; });
+      var pre='fsd'+String(id).replace(/[^a-z0-9]/gi,'')+c, gid=pre+'G', s='<defs><linearGradient id="'+gid+'" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="'+P.lo+'"/><stop offset=".45" stop-color="'+P.mid+'"/><stop offset="1" stop-color="'+P.deep+'"/></linearGradient>'
+        +'<pattern id="'+pre+'H" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><path d="M0 0 V6" stroke="#fff" stroke-width=".8" opacity=".25"/></pattern>'
+        +'<filter id="'+pre+'N" filterUnits="userSpaceOnUse" x="-20" y="-20" width="'+(VW+40)+'" height="'+(VH+40)+'"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.4"/></filter></defs>';
+      if(n){
+        var pts=[], mx=0, sig=MAX*.026;   /* the same smoothing, relative to the axis, on any scale */
+        for(var u=0;u<=MAX;u+=MAX/200){ var y=0; vals.forEach(function(e){ y+=e[1]*Math.exp(-Math.pow(u-e[0],2)/(2*sig*sig)); }); pts.push([u,y]); if(y>mx) mx=y; }
+        var d='M'+L+','+base; pts.forEach(function(p){ d+=' L'+X(p[0]).toFixed(1)+','+(base-p[1]/mx*maxH).toFixed(1); }); d+=' L'+R+','+base+' Z';
+        s+='<path d="'+d+'" fill="url(#'+gid+')"/><path d="'+d+'" fill="url(#'+pre+'H)"/><path d="'+d+'" fill="none" stroke="'+INK+'" stroke-width="1.4" filter="url(#'+pre+'N)"/>';
+      } else s+=T(VW/2,base-14,'No guesses yet',{serif:1,it:1,w:400,s:12,c:'#8c8a78'});
+      s+='<path d="M'+(L-8)+','+base+' H'+(R+8)+'" stroke="'+INK+'" stroke-width="1.5" filter="url(#'+pre+'N)"/>';
+      TK.forEach(function(t,i){ s+='<path d="M'+X(t)+','+base+' v5" stroke="'+INK+'" stroke-width="1.1"/>'+T(X(t),base+16,fm(t)+(i===TK.length-1?' '+C.unit:''),{w:600,s:11.5,c:'#76735f'}); });
+      var mean=n? sum/n : null, xm=n? X(mean) : null;
+      if(n) s+='<path d="M'+xm.toFixed(1)+','+(base-maxH-4)+' V'+base+'" stroke="'+DEEP+'" stroke-width="1.6" stroke-dasharray="4 3"/>'+pill(xm,1,MAX>=1000?150:128,'class average '+fm(mean),DEEP);
+      if(on && C.answers[c]!==undefined){
+        var a=C.answers[c], xa=X(a), clash=n && Math.abs(xa-xm)<(MAX>=1000?140:120), ya=clash? 21 : 1;
+        s+='<path d="M'+xa.toFixed(1)+','+(ya+16)+' V'+base+'" stroke="'+WARM+'" stroke-width="2.2"/>'+pill(xa,ya,MAX>=1000?130:108,'actual '+fm(a)+' '+C.unit,WARM);
+      }
+      svg.innerHTML=s;
+      if(stats) stats.textContent = n ? 'n = '+n+'  ·  average '+fm(mean)+' '+C.unit : '';
+    });
+  }
+  if(btn) new MutationObserver(function(){ draw(last); }).observe(btn,{attributes:true, attributeFilter:['class']});
+  if(window.ResizeObserver){ var rq=0, ro=new ResizeObserver(function(){ cancelAnimationFrame(rq); rq=requestAnimationFrame(function(){ draw(last); }); });
+    sec.querySelectorAll('[data-fsd]').forEach(function(e){ ro.observe(e); }); }
+  draw({});
+  /* big ranges (liters): show the student's slider value with a thousands separator */
+  if(MAX>=1000) sec.querySelectorAll('.gu-num').forEach(function(el){
+    function f(){ var t=el.textContent.replace(/,/g,''); if(/^\d+$/.test(t)){ var g=(+t).toLocaleString('en-US'); if(g!==el.textContent) el.textContent=g; } }
+    new MutationObserver(f).observe(el,{childList:true, characterData:true, subtree:true}); f(); });
   if(!window.__deckLiveReady){ window.__deckLiveReady=new Promise(function(r){ window.__deckLiveResolve=r; }); }
   window.__deckLiveReady.then(function(Lv){
     if(!Lv || !Lv.HOST || !Lv.backend) return;
@@ -1906,7 +2059,7 @@ body{background:#1f221b;}
 
 <div class="hud">
   <button onclick="prev()" title="Previous (left arrow)">&#8249;</button>
-  <span class="counter" id="counter">1 / 25</span>
+  <span class="counter" id="counter">1 / 26</span>
   <button onclick="next()" title="Next (right arrow)">&#8250;</button>
   <button onclick="toggleMenu()" title="Slide menu (O)">&#9776;</button>
   <button onclick="toggleFs()" title="Fullscreen (F)">&#9974;</button>
@@ -1915,7 +2068,7 @@ body{background:#1f221b;}
 <div class="menu" id="menu">
   <button class="menu-close" onclick="toggleMenu(false)" aria-label="Close menu">&times;</button>
   <h3>Chapter 12 &middot; Jump to a slide</h3>
-  <div class="menu-grid"><button class="menu-item" data-go="0"><span class="menu-num">1</span>Title</button><button class="menu-item" data-go="1"><span class="menu-num">2</span>Outline</button><button class="menu-item" data-go="2"><span class="menu-num">3</span>Announcements</button><button class="menu-item" data-go="3"><span class="menu-num">4</span>Introduction</button><button class="menu-item" data-go="4"><span class="menu-num">5</span>12.1 ▶ Live: Predators?</button><button class="menu-item" data-go="5"><span class="menu-num">6</span>12.1 Hunter-Gatherers</button><button class="menu-item" data-go="6"><span class="menu-num">7</span>12.1 Green Revolution</button><button class="menu-item" data-go="7"><span class="menu-num">8</span>12.1 ▶ Cereal Index (chart)</button><button class="menu-item" data-go="8"><span class="menu-num">9</span>12.1 ▶ Fertilizer &amp; Population (chart)</button><button class="menu-item" data-go="9"><span class="menu-num">10</span>12.1 Transportation</button><button class="menu-item" data-go="10"><span class="menu-num">11</span>12.1 Pesticides &amp; Fertilizers</button><button class="menu-item" data-go="11"><span class="menu-num">12</span>12.2 Loss of Agrodiversity</button><button class="menu-item" data-go="12"><span class="menu-num">13</span>12.1 ▶ Where Could You Buy a Banana?</button><button class="menu-item" data-go="13"><span class="menu-num">14</span>12.2 ▶ Live: True or False?</button><button class="menu-item" data-go="14"><span class="menu-num">15</span>12.4 ▶ Guess the CO₂e</button><button class="menu-item" data-go="15"><span class="menu-num">16</span>12.5 Food Systems</button><button class="menu-item" data-go="16"><span class="menu-num">17</span>12.5 ▶ Meat vs GDP (chart)</button><button class="menu-item" data-go="17"><span class="menu-num">18</span>12.5 Food-Water-Energy Nexus</button><button class="menu-item" data-go="18"><span class="menu-num">19</span>12.5 ▶ Game: Guess the Food</button><button class="menu-item" data-go="19"><span class="menu-num">20</span>12.5 Changing Diets</button><button class="menu-item" data-go="20"><span class="menu-num">21</span>12.5 ▶ Food Insecurity (chart)</button><button class="menu-item" data-go="21"><span class="menu-num">22</span>12.6 Eating Lower on the Food Chain</button><button class="menu-item" data-go="22"><span class="menu-num">23</span>12.6 Organic / Fair Trade / Local</button><button class="menu-item" data-go="23"><span class="menu-num">24</span>12.6 Food Waste</button><button class="menu-item" data-go="24"><span class="menu-num">25</span>Key Concepts</button></div>
+  <div class="menu-grid"><button class="menu-item" data-go="0"><span class="menu-num">1</span>Title</button><button class="menu-item" data-go="1"><span class="menu-num">2</span>Outline</button><button class="menu-item" data-go="2"><span class="menu-num">3</span>Announcements</button><button class="menu-item" data-go="3"><span class="menu-num">4</span>Introduction</button><button class="menu-item" data-go="4"><span class="menu-num">5</span>12.1 ▶ Live: Predators?</button><button class="menu-item" data-go="5"><span class="menu-num">6</span>12.1 Hunter-Gatherers</button><button class="menu-item" data-go="6"><span class="menu-num">7</span>12.1 Green Revolution</button><button class="menu-item" data-go="7"><span class="menu-num">8</span>12.1 ▶ Cereal Index (chart)</button><button class="menu-item" data-go="8"><span class="menu-num">9</span>12.1 ▶ Fertilizer &amp; Population (chart)</button><button class="menu-item" data-go="9"><span class="menu-num">10</span>12.1 Transportation</button><button class="menu-item" data-go="10"><span class="menu-num">11</span>12.1 Pesticides &amp; Fertilizers</button><button class="menu-item" data-go="11"><span class="menu-num">12</span>12.2 Loss of Agrodiversity</button><button class="menu-item" data-go="12"><span class="menu-num">13</span>12.1 ▶ Where Could You Buy a Banana?</button><button class="menu-item" data-go="13"><span class="menu-num">14</span>12.2 ▶ Live: True or False?</button><button class="menu-item" data-go="14"><span class="menu-num">15</span>12.4 ▶ Guess the CO₂e</button><button class="menu-item" data-go="15"><span class="menu-num">16</span>12.4 ▶ Guess the Water</button><button class="menu-item" data-go="16"><span class="menu-num">17</span>12.5 Food Systems</button><button class="menu-item" data-go="17"><span class="menu-num">18</span>12.5 ▶ Meat vs GDP (chart)</button><button class="menu-item" data-go="18"><span class="menu-num">19</span>12.5 Food-Water-Energy Nexus</button><button class="menu-item" data-go="19"><span class="menu-num">20</span>12.5 ▶ Game: Guess the Food</button><button class="menu-item" data-go="20"><span class="menu-num">21</span>12.5 Changing Diets</button><button class="menu-item" data-go="21"><span class="menu-num">22</span>12.5 ▶ Food Insecurity (chart)</button><button class="menu-item" data-go="22"><span class="menu-num">23</span>12.6 Eating Lower on the Food Chain</button><button class="menu-item" data-go="23"><span class="menu-num">24</span>12.6 Organic / Fair Trade / Local</button><button class="menu-item" data-go="24"><span class="menu-num">25</span>12.6 Food Waste</button><button class="menu-item" data-go="25"><span class="menu-num">26</span>Key Concepts</button></div>
 </div>
 
 <script>
