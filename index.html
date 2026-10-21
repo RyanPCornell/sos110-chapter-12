@@ -1065,6 +1065,24 @@ body{background:#1f221b;}
 .at-close{margin-top:1rem; font-family:inherit; font-weight:700; color:var(--muted); background:#fff;
   border:1.5px solid var(--line); border-radius:11px; padding:.5rem 1.2rem; cursor:pointer;}
 .at-close:hover{border-color:var(--accent); color:var(--accent);}
+.at-codein{text-transform:uppercase; letter-spacing:.06em; font-weight:700;}
+.at-codein::placeholder{text-transform:none; letter-spacing:0; font-weight:400;}
+.at-hint{font-size:clamp(.7rem,1.1vw,.8rem); color:var(--muted); font-style:italic; margin-top:.3rem;}
+/* daily code on the ?host copy: small, top-right, on every slide; click for full screen */
+.at-codepill{position:fixed; top:.28rem; right:.6rem; z-index:60; display:flex; align-items:baseline; gap:.45rem;
+  padding:.14rem .62rem .18rem; border-radius:999px; border:1px solid rgba(42,46,51,.18); cursor:pointer;
+  background:rgba(251,249,244,.86); backdrop-filter:blur(3px); box-shadow:0 4px 12px -8px rgba(0,0,0,.35);
+  font-family:'Inter',system-ui,sans-serif; opacity:.82; transition:opacity .15s;}
+.at-codepill:hover{opacity:1;}
+.at-codepill span{font-size:.56rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#7a8189;}
+.at-codepill b{font-size:.9rem; font-weight:900; letter-spacing:.06em; color:#22262b;}
+.at-codebig{position:fixed; inset:0; z-index:130; background:rgba(20,24,28,.88); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:.8rem; color:#fff; text-align:center; cursor:pointer; padding:1rem;
+  font-family:'Inter',system-ui,sans-serif;}
+.at-codebig[hidden]{display:none;}
+.at-codebig span{font-size:clamp(.9rem,1.6vw,1.2rem); font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#b3c0c8;}
+.at-codebig b{font-size:clamp(3rem,11vw,9rem); font-weight:900; letter-spacing:.06em; line-height:1;}
+.at-codebig em{font-family:'Merriweather',serif; font-size:clamp(.85rem,1.4vw,1.05rem); color:#dcd5cb;}
 
 
 /* guess-the-number live-distribution slide */
@@ -1213,7 +1231,7 @@ body{background:#1f221b;}
     <div class="outline-grid"><div class="ol-item"><span class="ol-num">12.1</span><span class="ol-text">How Did Our Modern Agriculture Develop?</span></div><div class="ol-item"><span class="ol-num">12.2</span><span class="ol-text">How Does Modern Agriculture Impact the Environment?</span></div><div class="ol-item"><span class="ol-num">12.3</span><span class="ol-text">How Is Meat Production Changing What We Consume?</span></div><div class="ol-item"><span class="ol-num">12.4</span><span class="ol-text">Is Conventional Meat Production Sustainable?</span></div><div class="ol-item"><span class="ol-num">12.5</span><span class="ol-text">How Have Our Food Systems Changed?</span></div><div class="ol-item"><span class="ol-num">12.6</span><span class="ol-text">How Do Our Food Choices Link to Sustainability?</span></div><div class="ol-item"><span class="ol-num">12.7</span><span class="ol-text">What Can I Do?</span></div></div>
   </div>
 </section>
-<section class="slide" data-type="announce" style="--accent:#4a6a3e" data-at-id="ch12-attendance" data-at-chapter="SOS 110, Chapter 12: Food">
+<section class="slide" data-type="announce" style="--accent:#4a6a3e" data-at-id="ch12-attendance" data-at-chapter="SOS 110, Chapter 12: Food" data-at-code="1">
   <div class="slide-inner col">
     <div class="an-head">
       <div class="eyebrow">Announcements</div>
@@ -6192,8 +6210,40 @@ show(start);
   // Firestore carries ONLY {open, session, n} — never a name or an email. Student
   // PII is POSTed straight from their browser to the Apps Script endpoint, because
   // the Firestore rules for this project are world-readable.
+  // ---- daily attendance code (opt-in per slide: data-at-code) -------------
+  // Derived from the local date only, so the host screen and every student laptop agree
+  // without a server. Words are easy to read off a projector; the number makes guessing slow.
+  function atDayCode(d){
+    const W=['SAGUARO','MESQUITE','OCOTILLO','CHOLLA','PALOVERDE','CREOSOTE','JAVELINA','ROADRUNNER',
+      'GILA','HAWK','COYOTE','QUAIL','MONSOON','ARROYO','CANYON','MESA','BUTTE','TORTOISE','BOBCAT',
+      'CACTUS','YUCCA','AGAVE','IRONWOOD','SYCAMORE','COTTONWOOD','WILLOW','HERON','FALCON','OWL',
+      'WREN','LIZARD','BEETLE','SPRING','RIVER','DELTA','DUNE','BASIN','RIDGE','CLOUD','THUNDER',
+      'RAIN','SUNSET','DAWN','EMBER','CEDAR','JUNIPER','PINYON','ASPEN','POPPY','LUPINE','SAGE',
+      'FERN','MOSS','LICHEN','CORAL','OTTER','BISON','ELK','LARK'];
+    const key=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(), str='sos110|attend|'+key+'|ocotillo';
+    let h=2166136261;
+    for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    h=h>>>0; return W[h%W.length]+'-'+(10+Math.floor(h/W.length)%90);
+  }
+  function atNorm(c){ return String(c||'').toUpperCase().replace(/[^A-Z0-9]/g,''); }
+  if(HOST && attends.some(function(sec){ return sec.dataset.atCode==='1'; }) && !document.querySelector('.at-codepill')){
+    const pill=document.createElement('button'), big=document.createElement('div');
+    pill.type='button'; pill.className='at-codepill'; pill.title='Click to show the code full-screen';
+    big.className='at-codebig'; big.hidden=true;
+    function paint(){
+      const c=atDayCode(new Date());
+      pill.innerHTML='<span>Today&rsquo;s code</span><b>'+c+'</b>';
+      big.innerHTML='<span>Today&rsquo;s attendance code</span><b>'+c+'</b><em>Enter it in the attendance pop-up. Click anywhere to close.</em>';
+    }
+    paint(); setInterval(paint, 60000);
+    pill.addEventListener('click', function(e){ e.stopPropagation(); big.hidden=false; });
+    big.addEventListener('click', function(e){ e.stopPropagation(); big.hidden=true; });
+    document.body.appendChild(pill); document.body.appendChild(big);
+  }
+
   attends.forEach(function(sec){
     const id=sec.dataset.atId, CHAPTER=sec.dataset.atChapter;
+    const NEEDCODE=sec.dataset.atCode==='1';
     const URL_=(window.ATTENDANCE_URL||'').trim();
     // Students submit through a Google Form when one is configured (fast, and
     // Forms does the writing); ATTENDANCE_URL is still what the INSTRUCTOR's
@@ -6236,6 +6286,10 @@ show(start);
           '<label class="at-field"><span class="at-lbl">ASU email</span>'+
             '<input class="at-input" type="email" data-at-email autocomplete="email" '+
             'placeholder="asurite@asu.edu"></label>'+
+          (NEEDCODE ? '<label class="at-field"><span class="at-lbl">Today&rsquo;s code</span>'+
+            '<input class="at-input at-codein" type="text" data-at-code autocomplete="off" autocapitalize="characters" '+
+            'spellcheck="false" placeholder="e.g. SAGUARO-42"></label>'+
+            '<div class="at-hint">Shown in the upper-right corner of the presentation screen.</div>' : '')+
           '<button class="at-submit" type="button" data-at-send>Submit</button>'+
           '<div class="at-msg" data-at-msg></div>'+
         '</div>'+
@@ -6251,6 +6305,7 @@ show(start);
     const firstEl=modal.querySelector('[data-at-first]');
     const lastEl=modal.querySelector('[data-at-last]');
     const mailEl=modal.querySelector('[data-at-email]');
+    const codeEl=modal.querySelector('[data-at-code]');
     const sendBtn=modal.querySelector('[data-at-send]');
     const msgEl=modal.querySelector('[data-at-msg]');
     const formBox=modal.querySelector('[data-at-form]');
@@ -6280,6 +6335,20 @@ show(start);
                           : !ln ? 'Please enter your last name.'
                                 : 'Please use your ASU email address — it must end in @asu.edu.';
         return;
+      }
+      // the daily code only gates Submit: it is checked here and never sent or stored
+      if(codeEl){
+        const ok = atNorm(codeEl.value)!=='' && atNorm(codeEl.value)===atNorm(atDayCode(new Date()));
+        if(!ok){
+          const typed=!!atNorm(codeEl.value);
+          codeEl.value=''; codeEl.classList.add('bad');
+          msgEl.className='at-msg err';
+          msgEl.textContent=(typed ? 'That code is incorrect. ' : 'Please enter today\u2019s code. ')
+            +'Find the correct code in the upper right-hand corner of the presentation screen, then enter it again.';
+          setTimeout(function(){ try{ codeEl.focus(); }catch(e){} }, 30);
+          return;
+        }
+        codeEl.classList.remove('bad');
       }
       sendBtn.disabled=true; sendBtn.textContent='Sending…';
       msgEl.className='at-msg'; msgEl.textContent='';
@@ -6398,6 +6467,7 @@ show(start);
           formBox.hidden=false; doneBox.hidden=true;
           sendBtn.disabled=false; sendBtn.textContent='Submit';
           msgEl.textContent=''; msgEl.className='at-msg';
+          if(codeEl){ codeEl.value=''; codeEl.classList.remove('bad'); }
           modal.hidden=false;
           setTimeout(function(){ try{ firstEl.focus(); }catch(e){} }, 60);
         } else if(!open && !doneBox.hidden===false){ /* leave a finished card up */ }
