@@ -1734,7 +1734,7 @@ body{background:#1f221b;}
     if(!backend||!confirm('Clear every answer and hide all the reveals?')) return;
     backend.setDoc('polls', ID, {counts:{}, released:0, live:{}, run:Date.now()});
   });
-  SEC.__deckNext=function(){ return HOST ? revealNext() : false; };
+  /* reveals happen only from the host's Reveal button (Oct 21 2026); the clicker moves on to the next slide */
   render();
   window.__deckLiveReady.then(function(L){
     backend=L.backend; HOST=!!L.HOST; SEC.classList.toggle('c12-host', HOST);
