@@ -792,6 +792,13 @@ img.bleed{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
 .c12h-src{flex:none; margin:0; font:italic clamp(.64rem,.85vw,.74rem)/1.45 'Merriweather',serif; color:#76735f;}
 @media(max-width:900px){ .c12c-wrap{position:static; padding:1rem 1rem 4rem;} .c12c-body{grid-template-columns:1fr;} }
 
+/* Hunter-Gatherers: two small book covers with citations at the foot of the image panel */
+.bleed-media.imgstack .hg-books{flex:none; display:grid; grid-template-columns:1fr 1fr; gap:.7rem; padding-top:.45rem; border-top:1px solid rgba(138,106,47,.35);}
+.hg-book{display:flex; gap:.5rem; align-items:center; min-width:0;}
+.bleed-media.contain.imgstack .hg-book img{flex:none; width:auto; height:clamp(46px,7.5vh,70px); object-fit:contain; background:transparent; border-radius:2px;
+  box-shadow:0 4px 10px -4px rgba(40,32,18,.55); padding:0;}
+.hg-book span{font:400 clamp(.52rem,.7vw,.64rem)/1.4 'Merriweather',serif; color:#606152;}
+
 /* ── "How should we approach sustainable food systems?" (The Omnivore's Dilemma) ── */
 .slide.od-slide{background:linear-gradient(158deg,#faf7ef,#ede5d3);}
 .od-wrap{position:absolute; inset:0; display:grid; grid-template-columns:clamp(12rem,21vw,19rem) minmax(0,1fr); gap:clamp(1.2rem,3vw,2.8rem);
@@ -1400,9 +1407,9 @@ body{background:#1f221b;}
     <div class="bleed-text">
 <div class="eyebrow">12.1  ·  How Did Our Modern Agriculture Develop?</div>
 <h2 class="heading">From Hunter-Gatherers to Agriculture</h2>
-<ul class="bullets"><li>Until ~10,000 years ago, humans were nomadic hunter-gatherers.</li><li><strong>Advantages:</strong> Varied diet. Fewer “work” hours.</li><li><strong>Disadvantages:</strong> Violence. Predation.</li><li>Agriculture enabled larger populations on less land. Crops (wheat, corn) and animals (cattle, chickens, pigs) were domesticated.</li><li><strong>~6,000 years ago:</strong> Egyptian and Mesopotamian irrigation; Chinese organic fertilization with plant and animal waste.</li><li>The Roman Empire rotated crops and used fallow fields to restore soil. Native Americans enriched soil with fish and used companion planting.</li></ul>
+<ul class="bullets"><li>Until ~10,000 years ago, humans were nomadic hunter-gatherers.</li><li><strong>Advantages:</strong> Varied diet. Fewer “work” hours.</li><li><strong>Disadvantages:</strong> Violence. Predation.</li><li>Agriculture enabled larger populations on less land. Crops (wheat, corn) and animals (cattle, chickens, pigs) were domesticated.</li><li><strong>~6,000 years ago:</strong> Egyptian and Mesopotamian irrigation; Chinese organic fertilization with plant and animal waste.</li><li>Books such as <em>Sapiens</em> and <em>Guns, Germs, and Steel</em> describe early farming as a hard, often miserable life (longer hours, a narrower diet, more disease), yet it was also the gateway to cities, writing and modern society.</li></ul>
     </div>
-    <div class="bleed-media contain imgstack"><img loading="lazy" decoding="async" data-src="media/image5.JPG" alt=""><img loading="lazy" decoding="async" data-src="media/labor-agriculture-owid.png" alt=""></div>
+    <div class="bleed-media contain imgstack"><img loading="lazy" decoding="async" data-src="media/image5.JPG" alt=""><img loading="lazy" decoding="async" data-src="media/labor-agriculture-owid.png" alt=""><div class="hg-books"><div class="hg-book"><img data-src="media/sapiens.jpg" alt=""><span>Harari, Y. N. (2015). <i>Sapiens: A Brief History of Humankind</i>. Harper.</span></div><div class="hg-book"><img data-src="media/guns-germs-steel.jpg" alt=""><span>Diamond, J. (1997). <i>Guns, Germs, and Steel: The Fates of Human Societies</i>. W. W. Norton.</span></div></div></div>
   </div>
   <div class="footer">© 2023 W. W. Norton &amp; Company, Inc.</div>
 </section>
