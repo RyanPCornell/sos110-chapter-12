@@ -792,6 +792,32 @@ img.bleed{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
 .c12h-src{flex:none; margin:0; font:italic clamp(.64rem,.85vw,.74rem)/1.45 'Merriweather',serif; color:#76735f;}
 @media(max-width:900px){ .c12c-wrap{position:static; padding:1rem 1rem 4rem;} .c12c-body{grid-template-columns:1fr;} }
 
+/* ── "How should we approach sustainable food systems?" (The Omnivore's Dilemma) ── */
+.slide.od-slide{background:linear-gradient(158deg,#faf7ef,#ede5d3);}
+.od-wrap{position:absolute; inset:0; display:grid; grid-template-columns:clamp(12rem,21vw,19rem) minmax(0,1fr); gap:clamp(1.2rem,3vw,2.8rem);
+  align-items:center; padding:clamp(1rem,2.6vh,2rem) clamp(4.2rem,6vw,5.6rem) clamp(3.4rem,7.5vh,4.4rem);}
+.od-book{margin:0; display:flex; flex-direction:column; gap:.6rem; align-items:center;}
+.od-book img{width:100%; max-height:62vh; object-fit:contain; border-radius:3px; box-shadow:0 18px 34px -16px rgba(40,32,18,.6), 0 2px 6px rgba(40,32,18,.25);}
+.od-book figcaption{font:italic 400 clamp(.6rem,.82vw,.74rem)/1.45 'Merriweather',serif; color:#606152; text-align:center;}
+.od-main{min-width:0; display:flex; flex-direction:column;}
+.od-main .heading{margin-bottom:.2rem;}
+.od-lead{margin:.2rem 0 clamp(.5rem,1.4vh,.9rem); font-size:clamp(.84rem,1.2vw,1.02rem); line-height:1.5; color:#2d2c24; max-width:60rem;}
+.od-chains{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:clamp(.4rem,1vh,.6rem) clamp(.5rem,1vw,.8rem);}
+.od-chains li{display:flex; gap:.6rem; align-items:flex-start; background:#fcf9f1; border:var(--t12-frame); border-radius:9px; padding:clamp(.45rem,1.1vh,.7rem) clamp(.6rem,1vw,.85rem);}
+.od-n{flex:none; display:grid; place-items:center; width:1.6rem; height:1.6rem; border-radius:50%; font:900 .78rem 'Merriweather',serif; color:#fcf9f1; background:var(--accent);}
+.od-chains b{font:900 clamp(.86rem,1.2vw,1.02rem) 'Merriweather',serif; color:#2b2a22;}
+.od-chains p{margin:.15rem 0 0; font-size:clamp(.72rem,1vw,.86rem); line-height:1.42; color:#3c3b30;}
+.od-takes{margin-top:clamp(.6rem,1.6vh,1rem); padding-top:clamp(.5rem,1.2vh,.8rem); border-top:1.5px solid rgba(138,106,47,.45);}
+.od-th{font:800 clamp(.6rem,.88vw,.74rem) 'Inter',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#87602f; margin-bottom:.4rem;}
+.od-tgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(.4rem,.9vw,.7rem);}
+.od-t{background:#fffdf8; border:var(--t12-frame); border-top:3px solid #87602f; border-radius:7px; padding:clamp(.4rem,1vh,.6rem) clamp(.55rem,.9vw,.75rem);}
+.od-t b{font:900 clamp(.8rem,1.1vw,.95rem) 'Merriweather',serif; color:#2b2a22;}
+.od-t p{margin:.15rem 0 0; font-size:clamp(.68rem,.94vw,.8rem); line-height:1.4; color:#3c3b30;}
+.od-tq{margin:.45rem 0 0; font:italic 600 clamp(.74rem,1.02vw,.88rem) 'Merriweather',serif; color:#4c4b3f;}
+.od-src{margin:.35rem 0 0; font:italic 400 clamp(.54rem,.72vw,.64rem) 'Merriweather',serif; color:#8c8a78;}
+@media(max-width:900px){ .od-wrap{position:static; grid-template-columns:1fr; padding:1rem 1rem 4rem;} .od-book img{max-height:40vh; width:auto;}
+  .od-chains,.od-tgrid{grid-template-columns:1fr;} }
+
 /* ════ Chapter 12 theme (ch12_theme.py) ════ */
 :root{
   --ink:#2b2a22; --forest:#2b2a22; --forest-mid:#3e6a3e; --green:#4a6a3e; --green-light:#b0a862;
@@ -1256,6 +1282,26 @@ body{background:#1f221b;}
     <div class="two-up">
       <figure><div class="two-media"><img data-src="media/image3.jpg" alt=""></div></figure>
       <figure><div class="two-media"><img data-src="media/image2.jpg" alt=""></div></figure>
+    </div>
+  </div>
+  <div class="footer">© 2023 W. W. Norton &amp; Company, Inc.</div>
+</section>
+<section class="slide od-slide" data-type="content" style="--accent:#4a6a3e">
+  <div class="od-wrap">
+    <figure class="od-book"><img data-src="media/omnivores-dilemma.jpg" alt="Cover of The Omnivore&#8217;s Dilemma by Michael Pollan">
+      <figcaption>Michael Pollan, <i>The Omnivore&#8217;s Dilemma: A Natural History of Four Meals</i> (Penguin Press, 2006)</figcaption></figure>
+    <div class="od-main">
+      <div class="eyebrow">Introduction</div>
+      <h2 class="heading">How should we approach sustainable food systems?</h2>
+      <p class="od-lead">The omnivore&#8217;s dilemma: when we can eat almost anything, what <i>should</i> we eat? To find out, Pollan
+        follows four meals back to where they came from, and each one tells the story of a different food system.</p>
+      <ol class="od-chains"><li><span class="od-n">1</span><div><b>Industrial</b><p>A fast-food meal, traced back to Iowa cornfields and a Kansas feedlot. Corn, grown with synthetic fertilizer, feeds the cattle and fills processed food.</p></div></li><li><span class="od-n">2</span><div><b>Industrial organic</b><p>A Whole Foods meal: certified organic, but often grown on very large farms and shipped across the country.</p></div></li><li><span class="od-n">3</span><div><b>Local and pastoral</b><p>A meal from Polyface Farm in Virginia, where cattle, chickens and pigs rotate across grass pastures.</p></div></li><li><span class="od-n">4</span><div><b>Hunted and gathered</b><p>A meal he made himself: a wild pig he hunted and mushrooms he foraged in California.</p></div></li></ol>
+      <div class="od-takes stage-item">
+        <div class="od-th">Same book, very different takeaways</div>
+        <div class="od-tgrid"><div class="od-t"><b>Buy local and pasture-raised</b><p>Pollan&#8217;s own sympathies lie with small, diversified farms like Polyface.</p></div><div class="od-t"><b>Eat lower on the food chain</b><p>Others conclude that plant-rich diets cut land, water and emissions the most.</p></div><div class="od-t"><b>Grow more on less land</b><p>Others argue that high yields spare land for nature, since grass-fed beef needs more land than feedlot beef.</p></div></div>
+        <p class="od-tq">Which answer you reach depends on what you weigh most: emissions, land, water, animal welfare, cost or community.</p>
+        <p class="od-src">Land use of grass-fed vs. feedlot beef: Hayek &amp; Garrett (2018), <i>Environmental Research Letters</i> 13:084005.</p>
+      </div>
     </div>
   </div>
   <div class="footer">© 2023 W. W. Norton &amp; Company, Inc.</div>
@@ -2085,7 +2131,7 @@ body{background:#1f221b;}
 
 <div class="hud">
   <button onclick="prev()" title="Previous (left arrow)">&#8249;</button>
-  <span class="counter" id="counter">1 / 26</span>
+  <span class="counter" id="counter">1 / 27</span>
   <button onclick="next()" title="Next (right arrow)">&#8250;</button>
   <button onclick="toggleMenu()" title="Slide menu (O)">&#9776;</button>
   <button onclick="toggleFs()" title="Fullscreen (F)">&#9974;</button>
@@ -2094,7 +2140,7 @@ body{background:#1f221b;}
 <div class="menu" id="menu">
   <button class="menu-close" onclick="toggleMenu(false)" aria-label="Close menu">&times;</button>
   <h3>Chapter 12 &middot; Jump to a slide</h3>
-  <div class="menu-grid"><button class="menu-item" data-go="0"><span class="menu-num">1</span>Title</button><button class="menu-item" data-go="1"><span class="menu-num">2</span>Outline</button><button class="menu-item" data-go="2"><span class="menu-num">3</span>Announcements</button><button class="menu-item" data-go="3"><span class="menu-num">4</span>Introduction</button><button class="menu-item" data-go="4"><span class="menu-num">5</span>12.1 ▶ Live: Predators?</button><button class="menu-item" data-go="5"><span class="menu-num">6</span>12.1 Hunter-Gatherers</button><button class="menu-item" data-go="6"><span class="menu-num">7</span>12.1 ▶ Live: True or False?</button><button class="menu-item" data-go="7"><span class="menu-num">8</span>12.1 Green Revolution</button><button class="menu-item" data-go="8"><span class="menu-num">9</span>12.1 ▶ Cereal Index (chart)</button><button class="menu-item" data-go="9"><span class="menu-num">10</span>12.1 ▶ Fertilizer &amp; Population (chart)</button><button class="menu-item" data-go="10"><span class="menu-num">11</span>12.1 Transportation</button><button class="menu-item" data-go="11"><span class="menu-num">12</span>12.1 Pesticides &amp; Fertilizers</button><button class="menu-item" data-go="12"><span class="menu-num">13</span>12.2 Loss of Agrodiversity</button><button class="menu-item" data-go="13"><span class="menu-num">14</span>12.1 ▶ Where Could You Buy a Banana?</button><button class="menu-item" data-go="14"><span class="menu-num">15</span>12.4 ▶ Guess the CO₂e</button><button class="menu-item" data-go="15"><span class="menu-num">16</span>12.4 ▶ Guess the Water</button><button class="menu-item" data-go="16"><span class="menu-num">17</span>12.5 Food Systems</button><button class="menu-item" data-go="17"><span class="menu-num">18</span>12.5 ▶ Meat vs GDP (chart)</button><button class="menu-item" data-go="18"><span class="menu-num">19</span>12.5 Food-Water-Energy Nexus</button><button class="menu-item" data-go="19"><span class="menu-num">20</span>12.5 ▶ Game: Guess the Food</button><button class="menu-item" data-go="20"><span class="menu-num">21</span>12.5 Changing Diets</button><button class="menu-item" data-go="21"><span class="menu-num">22</span>12.5 ▶ Food Insecurity (chart)</button><button class="menu-item" data-go="22"><span class="menu-num">23</span>12.6 Eating Lower on the Food Chain</button><button class="menu-item" data-go="23"><span class="menu-num">24</span>12.6 Organic / Fair Trade / Local</button><button class="menu-item" data-go="24"><span class="menu-num">25</span>12.6 Food Waste</button><button class="menu-item" data-go="25"><span class="menu-num">26</span>Key Concepts</button></div>
+  <div class="menu-grid"><button class="menu-item" data-go="0"><span class="menu-num">1</span>Title</button><button class="menu-item" data-go="1"><span class="menu-num">2</span>Outline</button><button class="menu-item" data-go="2"><span class="menu-num">3</span>Announcements</button><button class="menu-item" data-go="3"><span class="menu-num">4</span>Introduction</button><button class="menu-item" data-go="4"><span class="menu-num">5</span>Approaching Sustainable Food Systems</button><button class="menu-item" data-go="5"><span class="menu-num">6</span>12.1 ▶ Live: Predators?</button><button class="menu-item" data-go="6"><span class="menu-num">7</span>12.1 Hunter-Gatherers</button><button class="menu-item" data-go="7"><span class="menu-num">8</span>12.1 ▶ Live: True or False?</button><button class="menu-item" data-go="8"><span class="menu-num">9</span>12.1 Green Revolution</button><button class="menu-item" data-go="9"><span class="menu-num">10</span>12.1 ▶ Cereal Index (chart)</button><button class="menu-item" data-go="10"><span class="menu-num">11</span>12.1 ▶ Fertilizer &amp; Population (chart)</button><button class="menu-item" data-go="11"><span class="menu-num">12</span>12.1 Transportation</button><button class="menu-item" data-go="12"><span class="menu-num">13</span>12.1 Pesticides &amp; Fertilizers</button><button class="menu-item" data-go="13"><span class="menu-num">14</span>12.2 Loss of Agrodiversity</button><button class="menu-item" data-go="14"><span class="menu-num">15</span>12.1 ▶ Where Could You Buy a Banana?</button><button class="menu-item" data-go="15"><span class="menu-num">16</span>12.4 ▶ Guess the CO₂e</button><button class="menu-item" data-go="16"><span class="menu-num">17</span>12.4 ▶ Guess the Water</button><button class="menu-item" data-go="17"><span class="menu-num">18</span>12.5 Food Systems</button><button class="menu-item" data-go="18"><span class="menu-num">19</span>12.5 ▶ Meat vs GDP (chart)</button><button class="menu-item" data-go="19"><span class="menu-num">20</span>12.5 Food-Water-Energy Nexus</button><button class="menu-item" data-go="20"><span class="menu-num">21</span>12.5 ▶ Game: Guess the Food</button><button class="menu-item" data-go="21"><span class="menu-num">22</span>12.5 Changing Diets</button><button class="menu-item" data-go="22"><span class="menu-num">23</span>12.5 ▶ Food Insecurity (chart)</button><button class="menu-item" data-go="23"><span class="menu-num">24</span>12.6 Eating Lower on the Food Chain</button><button class="menu-item" data-go="24"><span class="menu-num">25</span>12.6 Organic / Fair Trade / Local</button><button class="menu-item" data-go="25"><span class="menu-num">26</span>12.6 Food Waste</button><button class="menu-item" data-go="26"><span class="menu-num">27</span>Key Concepts</button></div>
 </div>
 
 <script>
