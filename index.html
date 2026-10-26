@@ -3278,8 +3278,9 @@ body{background:#1f221b;}
   function mix(a,b,t){ a=hex(a); b=hex(b); return 'rgb('+[0,1,2].map(function(i){ return Math.round(a[i]+(b[i]-a[i])*t); }).join(',')+')'; }
   function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
   function F(p){ p=cl(p); return (.25*p+.375*p*p)/.625; }            // share of a lane's feed and water used by progress p (intake grows with size)
-  function dayAt(t){ return t<10 ? 13*t : Math.min(548, 130+70*(t-10)); } // slow for the first 130 days, then fast-forward
-  var TEND=10+418/70;
+  // Oct 26 2026 (Ryan: slower, easier to follow): 8 days a second through day 130, then fast-forward at 40 days a second
+  function dayAt(t){ return t<16.25 ? 8*t : Math.min(548, 130+40*(t-16.25)); }
+  var TEND=16.25+418/40;
 
   /* ── the stage ── */
   function build(){
@@ -3607,8 +3608,8 @@ body{background:#1f221b;}
   }
   function step(dt){
     if(!S || S.phase==='done') return;
-    var sec=dt/1000*uspeed, now=performance.now();
-    var cur=P; P=[]; cur=cur.filter(function(pt){ pt.t+=sec; return pt.upd(pt); }); P=cur.concat(P);   /* keep particles spawned during this pass */
+    var sec=dt/1000*uspeed, now=performance.now(), psec=sec*.8;   /* particles move a little slower too */
+    var cur=P; P=[]; cur=cur.filter(function(pt){ pt.t+=psec; return pt.upd(pt); }); P=cur.concat(P);   /* keep particles spawned during this pass */
     if(S.phase==='grow'){
       S.t=Math.min(TEND, S.t+sec); var day=dayAt(S.t);
       R.day.textContent=fmt(day); R.ff.textContent = day>130 ? 'fast-forward: only the steer is still growing' : '';
@@ -3624,7 +3625,7 @@ body{background:#1f221b;}
       });
       if(S.t>=TEND){ S.phase='harvest'; chip(1); S.hold=0; }
     } else if(S.phase==='harvest'){
-      S.hold+=sec; if(S.hold>3.4 && !P.length){ S.phase='compare'; chip(2); var t0=performance.now();
+      S.hold+=sec; if(S.hold>8 && !P.length){   /* time to take in the finished rows before the comparison card */ S.phase='compare'; chip(2); var t0=performance.now();
         (function fade(){ var u=cl((performance.now()-t0)/700); R.fin.setAttribute('opacity',u); if(u<1) requestAnimationFrame(fade); else { S.phase='done'; syncBar(); } })(); }
     }
   }
