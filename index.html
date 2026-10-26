@@ -1396,6 +1396,7 @@ svg.c12a{display:block; width:100%; height:auto; filter:drop-shadow(0 6px 12px r
 .fcx-gv{font:800 13px 'Inter',sans-serif; fill:#3b3222;} .fcx-gv.f{fill:#7a5a1f;} .fcx-gv.w{fill:#2f5f84;}
 .fcx-pv{font:900 15px 'Merriweather',Georgia,serif; fill:#8c8a78;} .fcx-pv.on{fill:#3e6a3e;}
 .fcx-leg{font:600 12px 'Inter',sans-serif; fill:#5e5340;}
+.fcx-seg{font:800 10px 'Inter',sans-serif; fill:#3b3222;}
 .fcx-fv{font:800 13px 'Inter',sans-serif; fill:#3b3222;} .fcx-fv.w{fill:#fffaf0;}
 .fcx-fs{font:600 15px 'Inter',sans-serif; fill:#3b3222;} .fcx-fs.i{font:italic 400 14px 'Merriweather',Georgia,serif; fill:#4c4b3f;}
 
@@ -3299,7 +3300,7 @@ body{background:#1f221b;}
       +'<linearGradient id="fcxFeed" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2c879"/><stop offset="1" stop-color="#b8973f"/></linearGradient>'
       +'<linearGradient id="fcxWater" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9cc3dc"/><stop offset="1" stop-color="#4f86ad"/></linearGradient>'
       +'<radialGradient id="fcxSun"><stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#f6d77e" stop-opacity=".7"/><stop offset="1" stop-color="#f6d77e" stop-opacity="0"/></radialGradient>'
-      +'<radialGradient id="fcxTok" cx=".38" cy=".34" r=".7"><stop offset="0" stop-color="#fff7d6"/><stop offset=".45" stop-color="#f2c45a"/><stop offset="1" stop-color="#b8892f"/></radialGradient>'
+      +'<radialGradient id="fcxTok" cx=".45" cy=".4" r=".65"><stop offset="0" stop-color="#f3d37a"/><stop offset=".7" stop-color="#e2b54a"/><stop offset="1" stop-color="#c9962f"/></radialGradient>'
       +'<filter id="fcxWash" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="8"/><feGaussianBlur stdDeviation=".7"/></filter>'
       +'<filter id="fcxGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .36  0 0 0 0 .29  0 0 0 0 .18  0 0 0 .07 0"/></filter>'
       +'<filter id="fcxGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4"/></filter>';
@@ -3418,15 +3419,17 @@ body{background:#1f221b;}
     o.wval=T(TX1,y0+90,'0 L','fcx-gv w',gg,{'text-anchor':'end'});
     /* the plate */
     var pg=E('g',null,g); o.pg=pg;
-    T(PX,y0+12,'STORED AS FOOD','fcx-gt',pg,{'text-anchor':'middle'});
-    o.slots=[0,1,2,3].map(function(k){ var x=PX-48+k*32, y=y0+30;
-      E('circle',{cx:x,cy:y,r:9,fill:'none',stroke:'#c9b78e','stroke-width':1.2,'stroke-dasharray':'3 3'},pg);
-      var f=E('circle',{cx:x,cy:y,r:8,fill:'url(#fcxTok)',stroke:'#8a6a2f','stroke-width':.8,opacity:0},pg); return {x:x,y:y,el:f}; });
+    /* Oct 26 2026 (Ryan: the four round slots read as "four suns"): a four-part bar, one 250-Calorie part per kept token */
+    T(PX,y0+12,'CALORIES THAT BECOME FOOD','fcx-gt',pg,{'text-anchor':'middle'});
+    o.slots=[0,1,2,3].map(function(k){ var x=PX-58+k*29.5, y=y0+20;
+      E('rect',{x:x,y:y,width:27,height:18,rx:4,fill:'#f3ecda',stroke:'#c9b78e','stroke-width':1,'stroke-dasharray':'3 2'},pg);
+      var f=E('g',{opacity:0},pg); E('rect',{x:x,y:y,width:27,height:18,rx:4,fill:'#e2b54a',stroke:'#8a6a2f','stroke-width':.9},f);
+      T(x+13.5,y+13,'250','fcx-seg',f,{'text-anchor':'middle'}); return {x:x+13.5,y:y+9,el:f}; });
     E('ellipse',{cx:PX,cy:y0+88,rx:58,ry:18,fill:'#d8cfbd'},pg);
     E('ellipse',{cx:PX,cy:y0+85,rx:58,ry:18,fill:'#fdfaf2',stroke:INK,'stroke-width':1.4},pg);
     E('ellipse',{cx:PX,cy:y0+85,rx:40,ry:11,fill:'none',stroke:'#b8ab8c','stroke-width':1},pg);
     o.food=E('g',{transform:'translate('+PX+','+(y0+82)+') scale(0.001)'},pg); o.food.innerHTML=ART.plate[L.key];
-    o.pval=T(PX,y0+116,'0 Cal','fcx-pv',pg,{'text-anchor':'middle'});
+    o.pval=T(PX,y0+116,'0 of 1,000 Cal','fcx-pv',pg,{'text-anchor':'middle'});
     return o;
   }
   function beanPlant(o){
@@ -3519,7 +3522,7 @@ body{background:#1f221b;}
     add({el:el,t:0,dur:1.1,upd:function(pt){ var u=ease(pt.t/pt.dur), cx=(from[0]+s.x)/2, cy=Math.min(from[1],s.y)-60;
       var a=(1-u)*(1-u), b=2*(1-u)*u, c=u*u, x=a*from[0]+b*cx+c*s.x, y=a*from[1]+b*cy+c*s.y;
       el.setAttribute('cx',x); el.setAttribute('cy',y); gl.setAttribute('cx',x); gl.setAttribute('cy',y);
-      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.pval.textContent=fmt(250*(j+1))+' Cal'; return false; } return true; }});
+      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.pval.textContent=fmt(250*(j+1))+' of 1,000 Cal'; return false; } return true; }});
   }
   function ring(x,y){ var c=E('circle',{cx:x,cy:y,r:8,fill:'none',stroke:'#f2c45a','stroke-width':2},R.fx);
     add({el:c,t:0,dur:.6,upd:function(pt){ var u=pt.t/pt.dur; c.setAttribute('r',8+u*12); c.setAttribute('opacity',1-u); if(u>=1){ c.remove(); return false; } return true; }}); }
@@ -3544,11 +3547,11 @@ body{background:#1f221b;}
     add({el:el,t:-.35,dur:1.1,upd:function(pt){ if(pt.t<0) return true; var u=ease(pt.t/pt.dur), cx=(x+s.x)/2, cy=Math.min(y,s.y)-60;
       var a=(1-u)*(1-u), b=2*(1-u)*u, c=u*u, X=a*x+b*cx+c*s.x, Y=a*y+b*cy+c*s.y;
       el.setAttribute('cx',X); el.setAttribute('cy',Y); gl.setAttribute('cx',X); gl.setAttribute('cy',Y);
-      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.pval.textContent=fmt(250*(j+1))+' Cal'; return false; } return true; }});
+      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.pval.textContent=fmt(250*(j+1))+' of 1,000 Cal'; return false; } return true; }});
   }
   function harvest(o){
     o.done=true; ring(SX,o.gy-30);
-    o.slots.forEach(function(s,k){ var el=E('circle',{cx:s.x,cy:s.y,r:8,fill:'url(#fcxTok)',stroke:'#8a6a2f','stroke-width':.8},R.fx); s.el.setAttribute('opacity',.25);
+    o.slots.forEach(function(s,k){ var el=E('circle',{cx:s.x,cy:s.y,r:8,fill:'url(#fcxTok)',stroke:'#8a6a2f','stroke-width':.8},R.fx); s.el.setAttribute('opacity',.35);
       add({el:el,t:-k*.08,dur:.7,upd:function(pt){ if(pt.t<0) return true; var u=ease(pt.t/pt.dur); el.setAttribute('cx',s.x+(PX-s.x)*u); el.setAttribute('cy',s.y+(o.y0+80-s.y)*u); el.setAttribute('r',8*(1-.6*u)); el.setAttribute('opacity',1-seg(u,.7,1));
         if(pt.t>=pt.dur){ el.remove(); return false; } return true; }}); });
     add({el:null,t:-.55,dur:.8,upd:function(pt){ if(pt.t<0) return true; var u=pt.t/pt.dur;
@@ -3564,7 +3567,7 @@ body{background:#1f221b;}
     item('<ellipse rx="4.4" ry="3" fill="#e2c879" stroke="#3b3222" stroke-width=".6"/>','= 250 Calories of feed',190);
     item('<path d="M0,-5 C2,-2 3,0 3,1.5 A3,3 0 0 1 -3,1.5 C-3,0 -2,-2 0,-5 Z" fill="#6f9fc2"/>','= 100 liters of water (mostly rain on pasture and feed crops)',390);
     item('<path d="M0,6 q-4,-6 0,-12 q4,-6 0,-12" transform="translate(0,4) scale(.5)" fill="none" stroke="#d0703a" stroke-width="3"/>','= feed energy lost (body heat, manure)',270);
-    item('<circle r="6" fill="url(#fcxTok)" stroke="#8a6a2f" stroke-width=".8"/>','= 250 Calories kept as food',230);
+    item('<g transform="translate(-8,-7)"><rect width="20" height="13" rx="3" fill="#e2b54a" stroke="#8a6a2f" stroke-width=".8"/><text x="10" y="9.6" text-anchor="middle" class="fcx-seg" style="font-size:7.5px">250</text></g>','= 250 Calories that become food',240);
   }
   function finale(){
     var g=R.fin;
@@ -3592,7 +3595,7 @@ body{background:#1f221b;}
     S={t:0, phase:'grow', hold:0}; paused=false;
     R.lanes.forEach(function(o){ o.p=0; o.fed=0; o.wet=0; o.kept=0; o.lost=0; o.done=false; o.cropT=0; o.rayT=0; o.drops.innerHTML=''; o.fx.innerHTML='';
       if(o.rays) o.rays.innerHTML=''; o.org.setAttribute('opacity',1); o.food.setAttribute('transform','translate('+PX+','+(o.y0+82)+') scale(0.001)');
-      o.slots.forEach(function(s){ s.el.setAttribute('opacity',0); }); o.pval.textContent='0 Cal'; o.pval.setAttribute('class','fcx-pv');
+      o.slots.forEach(function(s){ s.el.setAttribute('opacity',0); }); o.pval.textContent='0 of 1,000 Cal'; o.pval.setAttribute('class','fcx-pv');
       o.nTok=o.L.feed? Math.round(o.L.feed/TOK) : 0; o.nDrop=Math.max(1,Math.round(o.L.water/DROP));
       o.keepAt=[0,1,2,3].map(function(j){ return Math.floor((j+.6)*o.nTok/4); });
       grow(o,0); gauges(o,0); });
