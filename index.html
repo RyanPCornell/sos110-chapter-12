@@ -1429,6 +1429,7 @@ svg.c12a{display:block; width:100%; height:auto; filter:drop-shadow(0 6px 12px r
 .fcx-cap{font:italic 400 14.5px 'Merriweather',Georgia,serif; fill:#3b3222;}
 .fcx-brk{font:600 10.5px 'Inter',sans-serif; fill:#3b3222;}
 .fcx-brk.b{font-weight:800;}
+.fcx-svg .fcx-back{cursor:pointer;}
 .fcx-foot{font:italic 400 11.5px 'Merriweather',Georgia,serif; fill:#8c8a78;}
 .fcx-mi{font:900 22px 'Merriweather',Georgia,serif; fill:#3b3222;}
 .fcx-svg g.done .dmx-chip{fill:#e7e1cf;} .fcx-svg g.done .dmx-chipt{fill:#5e5340;}
@@ -3326,7 +3327,7 @@ body{background:#1f221b;}
     /* Oct 26 2026 (Ryan): the animation is now the slide itself, built into the slide's host instead of a pop-up */
     ov=document.createElement('div'); ov.className='fcx fcx-inline';
     ov.innerHTML='<div class="fcx-panel"><div class="dmx-stage fcx-stagebox"><button type="button" class="fcx-start" data-a="start"><i></i>Watch it happen</button></div>'
-      +'<div class="dmx-bar"><button type="button" class="dmx-b" data-a="play">Play</button><button type="button" class="dmx-b ghost" data-a="restart">Restart</button><span class="dmx-sp fcx-parts" role="group" aria-label="Part"><button type="button" data-part="1">1 Feed and water</button>'
+      +'<div class="dmx-bar"><button type="button" class="dmx-b" data-a="play">Play</button><button type="button" class="dmx-b ghost" data-a="restart">Restart</button><button type="button" class="dmx-b ghost fcx-card" data-a="card" hidden>Back to the animation</button><span class="dmx-sp fcx-parts" role="group" aria-label="Part"><button type="button" data-part="1">1 Feed and water</button>'
       +'<button type="button" data-part="2">2 Emissions</button></span>'
       +'<span class="dmx-sp" role="group" aria-label="Speed"><button type="button" data-s="1" class="on">1&times;</button><button type="button" data-s="2">2&times;</button></span>'
       +'<span class="dmx-note">Inputs scaled to 1,000 Calories of each food. Feed: Shepon et al. 2016; water: Mekonnen &amp; Hoekstra 2012.</span></div></div>';
@@ -3367,11 +3368,22 @@ body{background:#1f221b;}
     ov.addEventListener('click', function(e){ e.stopPropagation(); });   /* clicks on the stage never advance the deck */
     ov.querySelector('[data-a=play]').addEventListener('click', function(){ if(!started){ go(); return; } if(S && S.phase==='done'){ restart(); return; } paused=!paused; syncBar(); });
     ov.querySelector('[data-a=restart]').addEventListener('click', restart);
+    ov.querySelector('[data-a=card]').addEventListener('click', function(){ cardOn(!S.card); });
+    svg.addEventListener('click', function(e){ if(S && S.phase==='done' && S.card && e.target.classList && e.target.classList.contains('fcx-back')) cardOn(false); });
     [].forEach.call(ov.querySelectorAll('[data-part]'), function(b){ b.addEventListener('click', function(){ var k=+b.dataset.part; (k===1? start1 : k===2? start2 : start3)(); begin(); b.blur(); }); });
     [].forEach.call(ov.querySelectorAll('[data-s]'), function(b){ b.addEventListener('click', function(){
       uspeed=+b.dataset.s; [].forEach.call(ov.querySelectorAll('[data-s]'), function(x){ x.classList.toggle('on', x===b); }); }); });
   }
-  function syncBar(){ var b=ov.querySelector('[data-a=play]'); b.textContent = S && S.phase==='done' ? 'Replay' : (paused ? 'Play' : 'Pause');
+  /* Oct 26 2026 (Ryan): click beside a closing card (or the bar button) to see the finished animation again, and back */
+  function cardEl(){ return S.part===1 ? R.fin : (S.part===2 ? R.fin2 : R.fin3); }
+  function cardOn(on){
+    var c=cardEl(), from=+c.getAttribute('opacity'), to=on?1:0, t0=performance.now(); S.card=on;
+    c.setAttribute('pointer-events', on ? 'auto' : 'none');
+    (function f(){ var u=cl((performance.now()-t0)/350); c.setAttribute('opacity',(from+(to-from)*u).toFixed(3)); if(u<1) requestAnimationFrame(f); })();
+    syncBar();
+  }
+  function syncBar(){ var cb=ov.querySelector('[data-a=card]'); cb.hidden=!(S && S.phase==='done'); if(S) cb.textContent = S.card ? 'Back to the animation' : 'Show the comparison';
+    var b=ov.querySelector('[data-a=play]'); b.textContent = S && S.phase==='done' ? 'Replay' : (paused ? 'Play' : 'Pause');
     [].forEach.call(ov.querySelectorAll('[data-part]'), function(q){ var k=+q.dataset.part;
       q.classList.toggle('on', !!(S && S.part===k)); q.classList.toggle('cue', !!(S && S.phase==='done' && k===S.part+1)); }); }
 
@@ -3630,7 +3642,7 @@ body{background:#1f221b;}
   }
   function finale(){
     var g=R.fin;
-    E('rect',{x:20,y:120,width:1160,height:580,fill:'#fbf5e6',opacity:.78},g);
+    E('rect',{x:20,y:120,width:1160,height:580,fill:'#fbf5e6',opacity:.78,'class':'fcx-back'},g);
     E('rect',{x:150,y:150,width:900,height:470,rx:16,fill:'#fffaf0',stroke:GOLD,'stroke-width':1.4},g);
     E('rect',{x:159,y:159,width:882,height:452,rx:12,fill:'none',stroke:GOLD,'stroke-width':.6},g);
     T(600,200,'TO PUT THE SAME 1,000 CALORIES ON THE PLATE','dmx-tag',g,{'text-anchor':'middle'});
@@ -3659,7 +3671,7 @@ body{background:#1f221b;}
       o.nTok=o.L.feed? Math.round(o.L.feed/TOK) : 0; o.nDrop=Math.max(1,Math.round(o.L.water/DROP));
       o.keepAt=[0,1,2,3].map(function(j){ return Math.floor((j+.6)*o.nTok/4); });
       grow(o,0); gauges(o,0); });
-    R.fin.setAttribute('opacity',0); R.ff.textContent=''; chip(0); syncBar();
+    R.fin.setAttribute('opacity',0); [R.fin,R.fin2,R.fin3].forEach(function(c){ c.setAttribute('pointer-events','none'); }); R.ff.textContent=''; chip(0); syncBar();
   }
   function chip(k){ [].forEach.call(R.chips.children, function(c,i){ c.setAttribute('class', i===k ? 'on' : ''); }); }
   function gauges(o,day){
@@ -3691,7 +3703,7 @@ body{background:#1f221b;}
       if(S.t>=TEND){ S.phase='harvest'; chip(1); S.hold=0; }
     } else if(S.phase==='harvest'){
       S.hold+=sec; if(S.hold>8 && !P.length){   /* time to take in the finished rows before the comparison card */ S.phase='compare'; chip(2); var t0=performance.now();
-        (function fade(){ var u=cl((performance.now()-t0)/700); R.fin.setAttribute('opacity',u); if(u<1) requestAnimationFrame(fade); else { S.phase='done'; syncBar(); } })(); }
+        (function fade(){ var u=cl((performance.now()-t0)/700); R.fin.setAttribute('opacity',u); if(u<1) requestAnimationFrame(fade); else { S.phase='done'; cardOn(true); } })(); }
     }
   }
   function loop(now){ if(!opened) return; var dt=Math.min(64, now-(last||now)); last=now; if(!paused) step(dt); raf=requestAnimationFrame(loop); }
@@ -3885,7 +3897,7 @@ body{background:#1f221b;}
     R.lanes2.forEach(function(o){ o.w=[0,0,0,0]; o.e=[0,0,0,0]; o.np=[0,0,0,0];
       o.n=CATS.map(function(c){ var v=o.em[c.k]; return v>=.06 ? Math.max(1,Math.round(v/PUFF)) : 0; });
       bar2(o); o.note.textContent=''; o.brk.forEach(function(b){ b.g.setAttribute('opacity',.3); b.t.textContent=b.lab; }); });
-    chip2(-1); R.fin2.setAttribute('opacity',0); step2(0); syncBar();
+    chip2(-1); R.fin2.setAttribute('opacity',0); [R.fin,R.fin2,R.fin3].forEach(function(c){ c.setAttribute('pointer-events','none'); }); step2(0); syncBar();
   }
   function step2(sec){
     var cur=P; P=[]; cur=cur.filter(function(pt){ pt.t+=sec*.75; return pt.upd(pt); }); P=cur.concat(P);
@@ -3907,12 +3919,12 @@ body{background:#1f221b;}
       R.lanes2.forEach(function(o){ o.note.textContent=''; }); chip2(4);
       S.hold+=sec;
       if(S.hold>8 && !P.length && S.phase!=='compare'){ S.phase='compare'; var t0=performance.now();
-        (function fade(){ var v=cl((performance.now()-t0)/700); R.fin2.setAttribute('opacity',v); if(v<1) requestAnimationFrame(fade); else { S.phase='done'; syncBar(); } })(); }
+        (function fade(){ var v=cl((performance.now()-t0)/700); R.fin2.setAttribute('opacity',v); if(v<1) requestAnimationFrame(fade); else { S.phase='done'; cardOn(true); } })(); }
     }
   }
   function finale2(){
     var g=R.fin2, W2=520;
-    E('rect',{x:20,y:120,width:1160,height:580,fill:'#fbf5e6',opacity:.8},g);
+    E('rect',{x:20,y:120,width:1160,height:580,fill:'#fbf5e6',opacity:.8,'class':'fcx-back'},g);
     E('rect',{x:120,y:146,width:960,height:486,rx:16,fill:'#fffaf0',stroke:GOLD,'stroke-width':1.4},g);
     E('rect',{x:129,y:155,width:942,height:468,rx:12,fill:'none',stroke:GOLD,'stroke-width':.6},g);
     T(600,192,'GREENHOUSE GASES BEHIND THE SAME 1,000 CALORIES','dmx-tag',g,{'text-anchor':'middle'});
@@ -4042,7 +4054,7 @@ body{background:#1f221b;}
     R.lanes3.forEach(function(o){ o.w=[0,0,0]; o.e=[0,0,0]; o.np=[0,0,0];
       o.n=WCATS.map(function(c){ var v=o.wf[c.k]; return v>=25 ? Math.max(1,Math.round(v/WDROP)) : 0; });
       bar3(o); o.note.textContent=''; o.plume.setAttribute('opacity',.25); o.brk.forEach(function(b){ b.g.setAttribute('opacity',.3); b.v.textContent=''; }); });
-    chip3(-1); R.fin3.setAttribute('opacity',0); step3(0); syncBar();
+    chip3(-1); R.fin3.setAttribute('opacity',0); [R.fin,R.fin2,R.fin3].forEach(function(c){ c.setAttribute('pointer-events','none'); }); step3(0); syncBar();
   }
   function step3(sec){
     var cur=P; P=[]; cur=cur.filter(function(pt){ pt.t+=sec*.75; return pt.upd(pt); }); P=cur.concat(P);
@@ -4062,12 +4074,12 @@ body{background:#1f221b;}
       R.lanes3.forEach(function(o){ o.note.textContent=''; }); chip3(3);
       S.hold+=sec;
       if(S.hold>8 && !P.length && S.phase!=='compare'){ S.phase='compare'; var t0=performance.now();
-        (function fade(){ var v=cl((performance.now()-t0)/700); R.fin3.setAttribute('opacity',v); if(v<1) requestAnimationFrame(fade); else { S.phase='done'; syncBar(); } })(); }
+        (function fade(){ var v=cl((performance.now()-t0)/700); R.fin3.setAttribute('opacity',v); if(v<1) requestAnimationFrame(fade); else { S.phase='done'; cardOn(true); } })(); }
     }
   }
   function finale3(){
     var g=R.fin3, W2=520;
-    E('rect',{x:20,y:120,width:1160,height:580,fill:'#fbf5e6',opacity:.8},g);
+    E('rect',{x:20,y:120,width:1160,height:580,fill:'#fbf5e6',opacity:.8,'class':'fcx-back'},g);
     E('rect',{x:120,y:146,width:960,height:486,rx:16,fill:'#fffaf0',stroke:GOLD,'stroke-width':1.4},g);
     E('rect',{x:129,y:155,width:942,height:468,rx:12,fill:'none',stroke:GOLD,'stroke-width':.6},g);
     T(600,192,'THE WATER BEHIND THE SAME 1,000 CALORIES','dmx-tag',g,{'text-anchor':'middle'});
