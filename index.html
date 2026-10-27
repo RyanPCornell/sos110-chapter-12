@@ -3566,7 +3566,7 @@ body{background:#1f221b;}
     add({el:el,t:0,dur:1.1,upd:function(pt){ var u=ease(pt.t/pt.dur), cx=(from[0]+s.x)/2, cy=Math.min(from[1],s.y)-60;
       var a=(1-u)*(1-u), b=2*(1-u)*u, c=u*u, x=a*from[0]+b*cx+c*s.x, y=a*from[1]+b*cy+c*s.y;
       el.setAttribute('cx',x); el.setAttribute('cy',y); gl.setAttribute('cx',x); gl.setAttribute('cy',y);
-      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.pval.textContent=fmt(250*(j+1))+' of 1,000 Cal'; return false; } return true; }});
+      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.arrived++; o.pval.textContent=fmt(250*(j+1))+' of 1,000 Cal'; return false; } return true; }});
   }
   function ring(x,y){ var c=E('circle',{cx:x,cy:y,r:8,fill:'none',stroke:'#f2c45a','stroke-width':2},R.fx);
     add({el:c,t:0,dur:.6,upd:function(pt){ var u=pt.t/pt.dur; c.setAttribute('r',8+u*12); c.setAttribute('opacity',1-u); if(u>=1){ c.remove(); return false; } return true; }}); }
@@ -3591,7 +3591,7 @@ body{background:#1f221b;}
     add({el:el,t:-.35,dur:1.1,upd:function(pt){ if(pt.t<0) return true; var u=ease(pt.t/pt.dur), cx=(x+s.x)/2, cy=Math.min(y,s.y)-60;
       var a=(1-u)*(1-u), b=2*(1-u)*u, c=u*u, X=a*x+b*cx+c*s.x, Y=a*y+b*cy+c*s.y;
       el.setAttribute('cx',X); el.setAttribute('cy',Y); gl.setAttribute('cx',X); gl.setAttribute('cy',Y);
-      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.pval.textContent=fmt(250*(j+1))+' of 1,000 Cal'; return false; } return true; }});
+      if(pt.t>=pt.dur){ el.remove(); gl.remove(); s.el.setAttribute('opacity',1); ring(s.x,s.y); o.arrived++; o.pval.textContent=fmt(250*(j+1))+' of 1,000 Cal'; return false; } return true; }});
   }
   function harvest(o){
     o.done=true; ring(SX,o.gy-30);
@@ -3638,7 +3638,7 @@ body{background:#1f221b;}
   function start1(){
     P.forEach(function(pt){ if(pt.el && pt.el.parentNode) pt.el.parentNode.removeChild(pt.el); }); P=[]; R.fx.innerHTML='';
     S={t:0, phase:'grow', hold:0, part:1}; paused=false; show1();
-    R.lanes.forEach(function(o){ o.p=0; o.fed=0; o.wet=0; o.kept=0; o.lost=0; o.done=false; o.cropT=0; o.rayT=0; o.drops.innerHTML=''; o.fx.innerHTML='';
+    R.lanes.forEach(function(o){ o.p=0; o.fed=0; o.wet=0; o.kept=0; o.arrived=0; o.lost=0; o.done=false; o.cropT=0; o.rayT=0; o.drops.innerHTML=''; o.fx.innerHTML='';
       if(o.rays) o.rays.innerHTML=''; o.org.setAttribute('opacity',1); o.food.setAttribute('transform','translate('+PX+','+(o.y0+82)+') scale(0.001)');
       o.slots.forEach(function(s){ s.el.setAttribute('opacity',0); }); o.pval.textContent='0 of 1,000 Cal'; o.pval.setAttribute('class','fcx-pv');
       o.nTok=o.L.feed? Math.round(o.L.feed/TOK) : 0; o.nDrop=Math.max(1,Math.round(o.L.water/DROP));
@@ -3671,7 +3671,7 @@ body{background:#1f221b;}
         while(o.wet < o.nDrop && f >= (o.wet+.5)/o.nDrop){ drop(o); o.wet++; }
         if(!o.L.animal){ o.rayT-=sec; if(o.rayT<=0 && o.p>.05){ ray(o); o.rayT=.45; }
           while(o.cropT<4 && o.p >= .72+o.cropT*.07){ cropToken(o,o.cropT); o.cropT++; } }
-        if(o.p>=1 && !o.done){ var o2=o; add({el:null,t:o.L.animal?-1.2:-1.5,dur:0,upd:function(pt){ if(pt.t<0) return true; harvest(o2); return false; }}); o.done='pending'; }
+        if(o.p>=1 && !o.done){ var o2=o; add({el:null,t:o.L.animal?-1.2:-1.5,dur:0,upd:function(pt){ if(pt.t<0 || o2.arrived<4) return true; harvest(o2); return false; }});   /* wait for every kept token to land (Oct 26: the last chicken token used to arrive after the harvest) */ o.done='pending'; }
       });
       if(S.t>=TEND){ S.phase='harvest'; chip(1); S.hold=0; }
     } else if(S.phase==='harvest'){
